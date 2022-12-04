@@ -24,9 +24,11 @@
                         <img class="icon" src="icons/plus.png" alt="Del">
                     </div>
                 </div>
+
+                <!-- list modal -->
                 <div class="new-list-modal" id="hide">
-                    <form action="#">
-                        <input id="list-name" type="text" placeholder="Name" name="name" maxlength="100" required>            <!-- add a text range -->
+                    <form class="list-form" action="#">
+                        <input id="list-name" type="text" placeholder="Name" name="list-name" maxlength="30" required>
                         <button type="submit" class="add-list">Add</button>
                         <button type="reset" class="cancel-list">Cancel</button>
                     </form>
@@ -67,28 +69,32 @@
 
         <div class="footer">Copyright &copy; Shirsho Dipto</div>
 
-
+        <!-- Todo modal -->
         <div class="new-todo-modal" id="hide">
             <h2 class="todo-modal-header">Add New Task</h2>
-            <input id="todo-name" type="text" name="todo-name" required maxlength="50" placeholder="Title">
-            <div class="due-date">
-                <label for="due-date">Due Date:</label>
-                <input id="due-date" type="date" name="due-date" required>
-            </div>
-            <div class="priority">
-                <label for="priority">Select Priority (Optional)</label>
-                <select name="priority" id="priority">
-                    <option value="none" selected>None</option>
-                    <option value="high">High</option>
-                    <option value="medium">Medium</option>
-                    <option value="normal">Normal</option>
-                </select>
-            </div>
-            <textarea name="description" id="description" cols="30" rows="10" maxlength="300" placeholder="give some description (optional)"></textarea>
-            <div class="add-cancel">
-                <button class="modal-todo">Add</button>
-                <button class="cancel-todo">Cancel</button>
-            </div>
+
+            <form class="todo-form" action="#">
+                <input id="todo-name" type="text" name="todo-name" maxlength="50" placeholder="Title" required>
+                <div class="due-date">
+                    <label for="due-date">Due Date:</label>
+                    <input id="due-date" type="date" name="due-date">
+                </div>
+                <div class="priority">
+                    <label for="priority">Select Priority (Optional)</label>
+                    <select name="priority" id="priority">
+                        <option value="none" selected>None</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="normal">Normal</option>
+                    </select>
+                </div>
+                <textarea name="description" id="description" cols="30" rows="10" maxlength="300" placeholder="give some description (optional)"></textarea>
+                <div class="add-cancel">
+                    <button type="submit" class="modal-todo">Add</button>
+                    <button type="reset" class="cancel-todo">Cancel</button>
+                </div>
+            </form>
+
         </div>
     </div>
     

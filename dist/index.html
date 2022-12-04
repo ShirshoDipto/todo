@@ -5,8 +5,92 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My To Do App</title>
+    <link rel="stylesheet" href="todo.css">
 </head>
 <body>
+    <div class="contents">
+        <div class="header"><h1>My To-Do App</h1></div>
+        <div class="side-bar">
+            <div class="all-list">
+                <div class="a-list">
+                    <div class="left">
+                        <img class="icon" src="icons/plus.png" alt="pic">
+                        <div class="list-title">My Day</div>
+                    </div>
+                    <div class="right">
+                        <img class="icon" src="icons/plus.png" alt="E">
+                        <img class="icon" src="icons/plus.png" alt="U">
+                        <img class="icon" src="icons/plus.png" alt="D">
+                        <img class="icon" src="icons/plus.png" alt="Del">
+                    </div>
+                </div>
+                <div class="new-list-modal" id="hide">
+                    <form action="#">
+                        <input id="list-name" type="text" placeholder="Name" name="name" maxlength="100" required>            <!-- add a text range -->
+                        <button type="submit" class="add-list">Add</button>
+                        <button type="reset" class="cancel-list">Cancel</button>
+                    </form>
+                </div>
+            </div>
+            <div class="add-new-list">
+                <img src="icons/plus.png" alt="add icon">
+                <p>New List</p>
+            </div>
+        </div>
+        <div class="todos">
+            <div class="todo-header">
+                <h2 class="todo-title">My Day</h2>
+                <h3 class="todo-date">(Placeholder)</h3>
+                <img class="add-todo" src="icons/plus-thick.png" alt="add todo icon">
+            </div>
+
+
+            <div class="a-todo">
+                <div class="a-list">
+                    <div class="left">
+                        <img class="icon" src="icons/plus.png" alt="">
+                        <div>name of the todo</div>
+                    </div>
+                    <div class="right">
+                        <img class="icon" src="icons/plus.png" alt="E">
+                        <img class="icon" src="icons/plus.png" alt="U">
+                        <img class="icon" src="icons/plus.png" alt="D">
+                        <img class="icon" src="icons/plus.png" alt="Del">
+                    </div>
+                </div>
+                <div class="description" id="hide">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse ipsam fugiat eum hic ipsum dolorum blanditiis iusto deleniti perferendis enim nisi adipisci iure natus ad maxime, amet, corporis quibusdam aliquam!</div>
+                <div class="collapse">
+                    <img src="icons/plus.png" alt="collapse icon">
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">Copyright &copy; Shirsho Dipto</div>
+
+
+        <div class="new-todo-modal" id="hide">
+            <h2 class="todo-modal-header">Add New Task</h2>
+            <input id="todo-name" type="text" name="todo-name" required maxlength="50" placeholder="Title">
+            <div class="due-date">
+                <label for="due-date">Due Date:</label>
+                <input id="due-date" type="date" name="due-date" required>
+            </div>
+            <div class="priority">
+                <label for="priority">Select Priority (Optional)</label>
+                <select name="priority" id="priority">
+                    <option value="none" selected>None</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="normal">Normal</option>
+                </select>
+            </div>
+            <textarea name="description" id="description" cols="30" rows="10" maxlength="300" placeholder="give some description (optional)"></textarea>
+            <div class="add-cancel">
+                <button class="modal-todo">Add</button>
+                <button class="cancel-todo">Cancel</button>
+            </div>
+        </div>
+    </div>
     
 </body>
 <script src="main.js"></script>

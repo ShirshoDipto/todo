@@ -6,13 +6,12 @@ import {addNewListInterface} from './manageListInterface'
 function addList(e) {
     if (newListinput.value === '') return
     const newList = new List(newListinput.value, []);
-    // console.log(newList.getTitle);
-    // give this new list to the new module to bring it one
     addNewListInterface(newList, allList, newListModal);
-    newListModal.setAttribute('id', 'hide');
     console.log(newListModal);
     console.log(newList);
-    newListinput.textContent = '';
+    const listForm = document.querySelector('.new-list-modal form');
+    listForm.reset();
+    newListModal.setAttribute('id', 'hide');
     e.preventDefault()
 }
 
@@ -30,4 +29,6 @@ addNewList.addEventListener('click', () => {
 
 
 addListButton.addEventListener('click', addList);
-// cancelListButton.addEventListener('click', cancelList);
+cancelListButton.addEventListener('click', () => {
+    newListModal.setAttribute('id', 'hide');
+});

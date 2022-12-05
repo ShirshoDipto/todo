@@ -1,5 +1,5 @@
 {
-  "name": "restaurant-page",
+  "name": "todo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ShirshoDipto/restaurant-page.git"
+    "url": "git+https://github.com/ShirshoDipto/todo.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Shirsho Dipto",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ShirshoDipto/restaurant-page/issues"
+    "url": "https://github.com/ShirshoDipto/todo/issues"
   },
-  "homepage": "https://github.com/ShirshoDipto/restaurant-page#readme",
+  "homepage": "https://github.com/ShirshoDipto/todo#readme",
   "devDependencies": {
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.0"

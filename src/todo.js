@@ -3,11 +3,20 @@
 
 export default class Todo {
 
-    constructor(title, description, dueDate, priority) {
+    constructor(title, description, dueDate, priority, todoNumber) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
+        this.todoNumber = todoNumber;
+    }
+
+    get getTodoNumber() {
+        return this.todoNumber;
+    }
+
+    set setTodoNumber(value) {
+        this.todoNumber = value;
     }
 
     get getTitle() {

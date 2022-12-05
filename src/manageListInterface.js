@@ -1,6 +1,6 @@
 
 
-let lists = [];
+export let lists = [];
 
 export function addNewListInterface(listObject, container, insert_before) {
 

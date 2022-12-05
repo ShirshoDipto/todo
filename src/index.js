@@ -1,15 +1,14 @@
 import List from './list'
 import Todo from './todo'
-import {lists, addNewListInterface} from './manageListInterface'
-import {todos, addNewTodoInterface} from './manageTodoInterface'
+import {lists, addNewListInterface, showAllTodos} from './manageListInterface'
+import {todos, addNewTodoInterface, changeTodoHeader} from './manageTodoInterface'
 
 
 
-function addTodoToList(theTodo) {
-    console.log(theTodo);
-    for (let list in lists) {
-        console.log(list);
-        if (list.getListNumber === theTodo.getTodoNumber) {
+function addTodoToList(theTodo, listNumber) {
+    console.log(lists);
+    for (let list of lists) {
+        if (list.getListNumber === parseInt(listNumber)) {
             list.addNewList(theTodo);
         }
     }
@@ -19,9 +18,9 @@ function addTodoToList(theTodo) {
 function addList(e) {
     e.preventDefault()
     let newList = new List(newListinput.value, [], lists.length);
-    addNewListInterface(newList, allList, newListModal);
-    console.log(newListModal);
-    console.log(newList);
+    addNewListInterface(newList, allList, newListModal, todoHeader);
+    changeTodoHeader(todoHeader, newList);
+    console.log(lists);
     e.target.reset();
     newListModal.setAttribute('id', 'hide');
 }
@@ -29,25 +28,28 @@ function addList(e) {
 
 function add_a_Todo(e) {
     e.preventDefault()
-    let newTodo = new Todo(todoName.value, description.value, dueDate.value, priority.value, lists.length);
-    // console.log(newTodo);
-    // add the new todo to the appropriate list
-    // addTodoToList(newTodo);
-    // console.log(lists);
-    // addNewTodoInterface()
+    const listNumber = todoHeader.getAttribute('list-number');
+    let newTodo = new Todo(todoName.value, description.value, dueDate.value, priority.value, listNumber);
+    addTodoToList(newTodo, listNumber);
+    console.log(lists);
     addNewTodoInterface(allTodo, newTodo);
     newTodoModal.setAttribute('id', 'hide');
     e.target.reset();
 }
 
 
+function makeListActive(e) {
+    e.target.classList.add('.active-list');
+    // get the listObject
+    let listNumber = e.target.getAttribute('list-number');
+    const allTodos = document.querySelectorAll('.a-todo');
+    showAllTodos(todoHeader, allTodos, listNumber);
+}
+
+
 // Adding default list
 let defaultList = new List('My Day', [], 0);
-lists.push(defaultList); 
-
-console.log(lists);
-console.log(todos);
-
+lists.push(defaultList);
 
 // All global variables and eventListeners
 const allList = document.querySelector('.all-list');
@@ -64,6 +66,10 @@ const dueDate = document.querySelector('#due-date');
 const priority = document.querySelector('#priority');
 const description = document.querySelector('#description');
 const allTodo = document.querySelector('.todos');
+const todoHeader = document.querySelector('.todo-header');
+
+// grab all the lists
+const allLists = document.querySelectorAll('.all-list a-list');
 
 console.log(todoForm);
 console.log(cancelTodo);
@@ -90,3 +96,6 @@ todoForm.onsubmit = add_a_Todo;
 todoForm.onreset = () => {
     newTodoModal.setAttribute('id', 'hide');
 }
+
+// all list event listener
+allLists.onclick = makeListActive;

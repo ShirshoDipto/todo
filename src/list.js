@@ -5,7 +5,16 @@ export default class List {
         this.title = title;
         this.todos = todos;
         this.listNumber = listNumber;
+        // this.dueDate = dueDate;
     }
+
+    // get getDueDate() {
+    //     return this.dueDate;
+    // }
+
+    // set setDueDate(value) {
+    //     this.dueDate = value;
+    // }
 
     get getListNumber() {return this.listNumber}
 
@@ -25,8 +34,7 @@ export default class List {
         this.todos = value;
     }
 
-    addNewTodo(theTodo) {
-        // mothod description goes here
+    addNewList(theTodo) {
         this.todos.push(theTodo);
     }
 }

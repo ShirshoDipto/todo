@@ -127,3 +127,8 @@
     text-align: center;
 }
 
+
+.active-list {
+    border-left: 4px solid blue;
+}
+

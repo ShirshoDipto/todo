@@ -2,13 +2,13 @@
 
 export let lists = [];
 
-export function addNewListInterface(listObject, container, insert_before) {
+export function addNewListInterface(listObject, container, insert_before, todoHeader) {
 
     lists.push(listObject);
-    console.log(lists);
 
     const aList = document.createElement('div');
     aList.classList.add('a-list');
+    aList.setAttribute('list-number', `${listObject.getListNumber}`);
     container.insertBefore(aList, insert_before);
 
 
@@ -49,6 +49,14 @@ export function addNewListInterface(listObject, container, insert_before) {
     icon5.classList.add('icon');
     icon5.setAttribute('src', 'icons/plus.png');
     right.appendChild(icon5);
+}
+
+
+
+// show all todos of a particular list
+export function showAllTodos(todoHeader, allTodos, listNumber) {
+    // method description goes here
+    
 }
 
 

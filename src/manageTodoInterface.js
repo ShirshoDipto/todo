@@ -4,12 +4,11 @@ export let todos = [];
 
 
 export function addNewTodoInterface(container, theTodo) {
-    console.log(`the container is ${container}`);
 
     // descriptions goes here
+
     const aTodo = document.createElement('div');
     aTodo.classList.add('a-todo');
-    console.log(`the aTodo is ${aTodo}`);
     container.appendChild(aTodo);
 
     const aList = document.createElement('div');
@@ -45,7 +44,7 @@ export function addNewTodoInterface(container, theTodo) {
     left.appendChild(icon1);
 
     const titleTodo = document.createElement('div');
-    titleTodo.textContent = `${theTodo.getTitle} (${theTodo.getDueDate})`;
+    titleTodo.textContent = `${theTodo.getTitle} (Due: ${theTodo.getDueDate})`;
     left.appendChild(titleTodo);
 
     const icon2 = document.createElement('img');
@@ -71,10 +70,13 @@ export function addNewTodoInterface(container, theTodo) {
     collapseImg.setAttribute('alt', 'icon img');
     icon5.classList.add('icon');
     right.appendChild(icon5);
+}
 
 
-
-
+// change todo header
+export function changeTodoHeader(todoHeader, listObject) { 
+    todoHeader.setAttribute('list-number', `${listObject.getListNumber}`);
+    todoHeader.firstElementChild.textContent = listObject.getTitle;
 }
 
 

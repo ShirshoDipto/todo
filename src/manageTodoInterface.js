@@ -9,6 +9,7 @@ export function addNewTodoInterface(container, theTodo) {
 
     const aTodo = document.createElement('div');
     aTodo.classList.add('a-todo');
+    aTodo.setAttribute('list-number', `${theTodo.getTodoNumber}`);
     container.appendChild(aTodo);
 
     const aList = document.createElement('div');
@@ -74,9 +75,24 @@ export function addNewTodoInterface(container, theTodo) {
 
 
 // change todo header
-export function changeTodoHeader(todoHeader, listObject) { 
-    todoHeader.setAttribute('list-number', `${listObject.getListNumber}`);
-    todoHeader.firstElementChild.textContent = listObject.getTitle;
+export function changeTodoHeader(todoHeader, listNumber, title) {
+    todoHeader.setAttribute('list-number', `${listNumber}`);
+    todoHeader.firstElementChild.textContent = title;
+}
+
+// show all todos of a particular list
+export function showListsTodos(allTodos, listNumber) {
+    // method description goes here
+    if (allTodos === null) return
+    for (let todo of allTodos) {
+        if (todo.getAttribute('list-number') === listNumber) {
+            todo.removeAttribute('id');
+        }
+        else {
+            todo.setAttribute('id', 'hide');
+        }
+    }
+    
 }
 
 

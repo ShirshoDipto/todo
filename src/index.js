@@ -1,7 +1,7 @@
 import List from './list'
 import Todo from './todo'
-import {lists, addNewListInterface, showAllTodos} from './manageListInterface'
-import {todos, addNewTodoInterface, changeTodoHeader} from './manageTodoInterface'
+import {lists, addNewListInterface, remoreExistingMarker} from './manageListInterface'
+import {addNewTodoInterface, changeTodoHeader, showListsTodos} from './manageTodoInterface'
 
 
 
@@ -19,10 +19,14 @@ function addList(e) {
     e.preventDefault()
     let newList = new List(newListinput.value, [], lists.length);
     addNewListInterface(newList, allList, newListModal, todoHeader);
-    changeTodoHeader(todoHeader, newList);
-    console.log(lists);
+    changeTodoHeader(todoHeader, newList.getListNumber, newList.getTitle);
+    const allTodos = Array.from(document.querySelectorAll('.a-todo'));
+    showListsTodos(allTodos, newList.getListNumber);
+    const newListDOM = document.getElementById('active-list');
+    newListDOM.onclick = makeListActive;
     e.target.reset();
     newListModal.setAttribute('id', 'hide');
+    console.log(newList);
 }
 
 
@@ -31,19 +35,28 @@ function add_a_Todo(e) {
     const listNumber = todoHeader.getAttribute('list-number');
     let newTodo = new Todo(todoName.value, description.value, dueDate.value, priority.value, listNumber);
     addTodoToList(newTodo, listNumber);
-    console.log(lists);
     addNewTodoInterface(allTodo, newTodo);
     newTodoModal.setAttribute('id', 'hide');
     e.target.reset();
 }
 
 
+
+// when clicked on the div:
+//  send all the lists into the manageInterface module
+//  remove the existing border
+//  set the border to the thing that is selected
+
 function makeListActive(e) {
-    e.target.classList.add('.active-list');
+    remoreExistingMarker(allList);
+    this.setAttribute('id', 'active-list');
+    
     // get the listObject
     let listNumber = e.target.getAttribute('list-number');
-    const allTodos = document.querySelectorAll('.a-todo');
-    showAllTodos(todoHeader, allTodos, listNumber);
+    changeTodoHeader(todoHeader, listNumber, this.firstElementChild.lastElementChild.textContent);
+    const allTodos = Array.from(document.querySelectorAll('.a-todo'));
+    showListsTodos(allTodos, listNumber);
+    console.log(lists);
 }
 
 
@@ -60,7 +73,6 @@ const newListModal = document.querySelector('.new-list-modal');
 const addTodo = document.querySelector('.add-todo');
 const newTodoModal = document.querySelector('.new-todo-modal');
 const todoForm = document.querySelector('.todo-form');
-const cancelTodo = document.querySelector('.cancel-todo');
 const todoName = document.querySelector('#todo-name');
 const dueDate = document.querySelector('#due-date');
 const priority = document.querySelector('#priority');
@@ -68,15 +80,7 @@ const description = document.querySelector('#description');
 const allTodo = document.querySelector('.todos');
 const todoHeader = document.querySelector('.todo-header');
 
-// grab all the lists
-const allLists = document.querySelectorAll('.all-list a-list');
-
-console.log(todoForm);
-console.log(cancelTodo);
-console.log(todoName);
-console.log(dueDate);
-console.log(priority);
-console.log(description);
+const defaultListDOM = document.querySelector('.all-list .a-list');
 
 addTodo.onclick = () => {
     newTodoModal.removeAttribute('id');
@@ -98,4 +102,8 @@ todoForm.onreset = () => {
 }
 
 // all list event listener
-allLists.onclick = makeListActive;
+// defaultListDOMChildren.forEach(theList => {
+//     theList.addEventListener('click', makeListActive, {capture:true});
+// });
+
+defaultListDOM.onclick = makeListActive;

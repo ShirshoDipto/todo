@@ -6,9 +6,12 @@ export function addNewListInterface(listObject, container, insert_before, todoHe
 
     lists.push(listObject);
 
+    remoreExistingMarker(container);
+
     const aList = document.createElement('div');
     aList.classList.add('a-list');
     aList.setAttribute('list-number', `${listObject.getListNumber}`);
+    aList.setAttribute('id', 'active-list');
     container.insertBefore(aList, insert_before);
 
 
@@ -52,14 +55,22 @@ export function addNewListInterface(listObject, container, insert_before, todoHe
 }
 
 
-
-// show all todos of a particular list
-export function showAllTodos(todoHeader, allTodos, listNumber) {
-    // method description goes here
-    
+export function remoreExistingMarker(container) {
+    const firstList = container.firstElementChild;
+    if (firstList.getAttribute('id') === 'active-list') {
+        firstList.removeAttribute('id');
+    }
+    else {
+        let nextList = firstList.nextElementSibling;
+        while (true) {
+            if (nextList.getAttribute('id') === 'active-list'){
+                nextList.removeAttribute('id');
+                break;
+            }
+            nextList = nextList.nextElementSibling;
+        }
+    }
 }
-
-
 
 
 // <div class="a-list">

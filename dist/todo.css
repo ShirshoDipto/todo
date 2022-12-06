@@ -37,6 +37,7 @@
 .a-list{
     display: flex;
     border: thin solid black;
+    padding: 30px;
 }
 
 .add-new-list{
@@ -128,7 +129,11 @@
 }
 
 
-.active-list {
+#active-list {
     border-left: 4px solid blue;
+}
+
+.icon {
+    border: thin solid red;
 }
 

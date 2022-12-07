@@ -63,13 +63,20 @@ function makeListActive(e) {
 
 function showRelatedTodos(x, listNo){
     if (lists.length === 0) {
-        return
+        todoHeader.firstElementChild.textContent = 'Add a List';
+        todoHeader.firstElementChild.nextElementSibling.textContent = '';
     }
-    if (index === `${lists.length-1}`) {
-        showListsTodos(x, `${parseInt(index)-1}`);
+    else if (listNo === `0`) {
+        const activeList = document.querySelector('.all-list div[list-number="0"]');
+        activeList.setAttribute('id', 'active-list');
+        changeTodoHeader(todoHeader, listNo, lists[0].getTitle);
+        showListsTodos(x, `0`);
     }
     else {
-        showListsTodos(x, `${parseInt(index)-1}`);
+        const activeList = document.querySelector(`.all-list div[list-number="${parseInt(listNo)-1}"]`);
+        activeList.setAttribute('id', 'active-list');
+        changeTodoHeader(todoHeader, listNo, lists[parseInt(listNo)-1].getTitle);
+        showListsTodos(x, `${parseInt(listNo)-1}`);
     }
 }
 
@@ -84,8 +91,9 @@ function deleteElement(element) {
         deleteRelatedTodo(allTodo, x, index);
         x = Array.from(document.querySelectorAll('.all-todo .a-todo'));
         updateListsAndTodos(container, index, x);
-        if (index === `${lists.length-1}`) {
-            showListsTodos(x, index);
+        showRelatedTodos(x, index);
+        if (todoHeader.getAttribute('list-number') === index) {
+            showRelatedTodos(x, index);
         }
     }
 }

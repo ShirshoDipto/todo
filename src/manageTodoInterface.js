@@ -75,6 +75,8 @@ export function addNewTodoInterface(container, theTodo) {
     collapseImg.setAttribute('alt', 'icon img');
     icon5.classList.add('delete');
     right.appendChild(icon5);
+
+    return aTodo;
 }
 
 
@@ -99,6 +101,21 @@ export function showListsTodos(allTodos, listNumber) {
 }
 
 
+export function deleteRelatedTodo(container, allTodos, listNumber){
+    for (let todo of allTodos) {
+        const list_num = todo.getAttribute('list-number');
+        if (list_num === listNumber) {
+            container.removeChild(todo);
+        }
+    }
+}
+
+
+// export function updateTodoDOM(anArray) {
+//     for (let x of anArray) {
+        
+//     }
+// }
 
 // <div class="a-todo">
 //     <div class="a-list">

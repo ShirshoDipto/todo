@@ -1,13 +1,14 @@
 import List from './list'
 import Todo from './todo'
-import {lists, addNewListInterface, removeExistingMarker} from './manageListInterface'
-import {todos, addNewTodoInterface, changeTodoHeader, showListsTodos} from './manageTodoInterface'
+import {lists, addNewListInterface, removeExistingMarker, updateListsAndTodos} from './manageListInterface'
+import {addNewTodoInterface, changeTodoHeader, showListsTodos, deleteRelatedTodo} from './manageTodoInterface'
 
 
 function addList(e) {
     e.preventDefault()
     // manage Array of lists
     let newList = new List(newListinput.value, [], lists.length);
+    removeExistingMarker(allList);
     addNewListInterface(newList, allList, newListModal, todoHeader);
     const allTodos = Array.from(document.querySelectorAll('.a-todo'));
 
@@ -32,7 +33,7 @@ function add_a_Todo(e) {
 
 
     // bring the todo interface
-    addNewTodoInterface(allTodo, newTodo);
+    const newTodoDOM = addNewTodoInterface(allTodo, newTodo);
 
     // hide modal
     newTodoModal.setAttribute('id', 'hide');
@@ -42,20 +43,51 @@ function add_a_Todo(e) {
 
 
 function makeListActive(e) {
-    removeExistingMarker(allList);
-    this.setAttribute('id', 'active-list');
-    
-    // get the listObject
-    let listNumber = e.target.getAttribute('list-number');
-    changeTodoHeader(todoHeader, listNumber, this.firstElementChild.lastElementChild.textContent);
-    const allTodos = Array.from(document.querySelectorAll('.a-todo'));
-    showListsTodos(allTodos, listNumber);
+    // handle delete, up, down, complete
+    if (e.target.classList.value === 'delete') {
+        deleteElement(this);
+    }
+    else {
+        removeExistingMarker(allList);
+        this.setAttribute('id', 'active-list');
+        
+        // get the listObject
+        let listNumber = e.target.getAttribute('list-number');
+        changeTodoHeader(todoHeader, listNumber, this.firstElementChild.lastElementChild.textContent);
+        const allTodos = Array.from(document.querySelectorAll('.a-todo'));
+        showListsTodos(allTodos, listNumber);
+    }
+
     console.log(lists);
 }
 
+function showRelatedTodos(x, listNo){
+    if (lists.length === 0) {
+        return
+    }
+    if (index === `${lists.length-1}`) {
+        showListsTodos(x, `${parseInt(index)-1}`);
+    }
+    else {
+        showListsTodos(x, `${parseInt(index)-1}`);
+    }
+}
 
-function handleTodoCheckbox(e) {
-    console.log('It was clicked');
+
+function deleteElement(element) {
+    if (element.classList.value === 'a-list') {
+        const index = element.getAttribute('list-number');
+        // removeExistingMarker(allList);
+        allList.removeChild(element)
+        const container = Array.from(document.querySelectorAll('.a-list'));
+        let x = Array.from(document.querySelectorAll('.all-todo .a-todo'));
+        deleteRelatedTodo(allTodo, x, index);
+        x = Array.from(document.querySelectorAll('.all-todo .a-todo'));
+        updateListsAndTodos(container, index, x);
+        if (index === `${lists.length-1}`) {
+            showListsTodos(x, index);
+        }
+    }
 }
 
 

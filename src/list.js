@@ -1,7 +1,7 @@
 
 
 export default class List {
-    constructor(title, todos, listNumber, active) {
+    constructor(title, todos, listNumber) {
         this.title = title;
         this.todos = todos;
         this.listNumber = listNumber;

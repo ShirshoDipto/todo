@@ -2,11 +2,9 @@
 
 export let lists = [];
 
-export function addNewListInterface(listObject, container, insert_before, todoHeader) {
+export function addNewListInterface(listObject, container, insert_before) {
 
     lists.push(listObject);
-
-    removeExistingMarker(container);
 
     const aList = document.createElement('div');
     aList.classList.add('a-list');
@@ -71,6 +69,56 @@ export function removeExistingMarker(container) {
         }
     }
 }
+
+export function updateListsAndTodos(container, listNumber, allTodos) {
+    lists.splice(parseInt(listNumber), 1);
+    let index = 0;
+
+    //  update doms
+    for (let list of container) {
+        list.removeAttribute('list-number');
+        list.setAttribute('list-number', `${index}`);
+        index++;
+    }
+
+    // update Array and todo DOM's
+    let allTodoIndex = 0;
+    for (let i = 0; i < lists.length; i++) {
+        lists[i].setListNumber = i;
+        if (lists[i].getTodos.length === 0) {
+            continue;
+        }
+        else {
+            const list_no = lists[i].getListNumber;
+            for (let x of lists[i].getTodos) {
+                x.setListNumber = i;
+                let theDOM = allTodos[allTodoIndex];
+                theDOM.removeAttribute('list-number');
+                theDOM.setAttribute('list-number', `${list_no}`);
+                allTodoIndex++;
+            }
+
+        }
+    }
+}
+
+
+// export function updateTodoDOM(allTodos) {
+//     let allTodoIndex = 0;
+//     for (let list of lists) {
+//         if (list.getTodos.length === 0) {
+//             continue;
+//         }
+//         else {
+//             const listNumber = list.getListNumber;
+//             for (let todo of list.getTodo) {
+//                 let theDOM = allTodos[allTodoIndex];
+//                 theDOM.removeAttribute('list-number');
+//                 theDOM.setAttribute('list-number', `${listNumber}`);
+//             }
+//         }
+//     }
+// }
 
 
 // <div class="a-list">

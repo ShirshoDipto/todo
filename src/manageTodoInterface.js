@@ -7,9 +7,12 @@ export function addNewTodoInterface(container, theTodo) {
 
     // descriptions goes here
 
+    todos.push(theTodo);
+
     const aTodo = document.createElement('div');
     aTodo.classList.add('a-todo');
-    aTodo.setAttribute('list-number', `${theTodo.getTodoNumber}`);
+    aTodo.setAttribute('list-number', `${theTodo.getListNumber}`);
+    aTodo.setAttribute('todo-number', `${theTodo.getTodoNumber}`);
     container.appendChild(aTodo);
 
     const aList = document.createElement('div');
@@ -38,11 +41,12 @@ export function addNewTodoInterface(container, theTodo) {
     collapseImg.setAttribute('alt', 'collapse icon');
     collapse.appendChild(collapseImg);
 
-    const icon1 = document.createElement('img');
-    icon1.setAttribute('src', 'icons/plus.png');
-    collapseImg.setAttribute('alt', 'icon img');
-    icon1.classList.add('icon');
-    left.appendChild(icon1);
+    const input1 = document.createElement('input');
+    input1.setAttribute('type', 'checkbox');
+    input1.setAttribute('id', 'todo-checkbox');
+    input1.setAttribute('name', 'todo-checkbox');
+    // input1.classList.add('icon');
+    left.appendChild(input1);
 
     const titleTodo = document.createElement('div');
     titleTodo.textContent = `${theTodo.getTitle} (Due: ${theTodo.getDueDate})`;
@@ -69,7 +73,7 @@ export function addNewTodoInterface(container, theTodo) {
     const icon5 = document.createElement('img');
     icon5.setAttribute('src', 'icons/plus.png');
     collapseImg.setAttribute('alt', 'icon img');
-    icon5.classList.add('icon');
+    icon5.classList.add('delete');
     right.appendChild(icon5);
 }
 
@@ -92,7 +96,6 @@ export function showListsTodos(allTodos, listNumber) {
             todo.setAttribute('id', 'hide');
         }
     }
-    
 }
 
 

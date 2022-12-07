@@ -3,11 +3,13 @@
 
 export default class Todo {
 
-    constructor(title, description, dueDate, priority, todoNumber) {
+    constructor(title, description, dueDate, priority, listNumber, completed, todoNumber) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
+        this.listNumber = listNumber;
+        this.completed = completed;
         this.todoNumber = todoNumber;
     }
 
@@ -17,6 +19,27 @@ export default class Todo {
 
     set setTodoNumber(value) {
         this.todoNumber = value;
+    }
+
+    get getIsCompleted() {
+        return this.completed;
+    }
+
+    changeCompleteStatus() {
+        if (this.completed === true) {
+            this.completed = false;
+        }
+        else {
+            this.completed = true;
+        }
+    }
+
+    get getListNumber() {
+        return this.listNumber;
+    }
+
+    set setListNumber(value) {
+        this.listNumber = value;
     }
 
     get getTitle() {

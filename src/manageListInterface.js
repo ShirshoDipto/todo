@@ -6,7 +6,7 @@ export function addNewListInterface(listObject, container, insert_before, todoHe
 
     lists.push(listObject);
 
-    remoreExistingMarker(container);
+    removeExistingMarker(container);
 
     const aList = document.createElement('div');
     aList.classList.add('a-list');
@@ -49,13 +49,13 @@ export function addNewListInterface(listObject, container, insert_before, todoHe
     right.appendChild(icon4);
 
     const icon5 = document.createElement('img');
-    icon5.classList.add('icon');
+    icon5.classList.add('delete');
     icon5.setAttribute('src', 'icons/plus.png');
     right.appendChild(icon5);
 }
 
 
-export function remoreExistingMarker(container) {
+export function removeExistingMarker(container) {
     const firstList = container.firstElementChild;
     if (firstList.getAttribute('id') === 'active-list') {
         firstList.removeAttribute('id');

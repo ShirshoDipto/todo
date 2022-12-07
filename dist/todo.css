@@ -64,7 +64,6 @@
 .todos{
     display: flex;
     flex-direction: column;
-    /* position: relative; */
 }
 
 .add-todo{
@@ -133,7 +132,12 @@
     border-left: 4px solid blue;
 }
 
-.icon {
+.icon, .delete {
     border: thin solid red;
+}
+
+.all-todo{
+    display: flex;
+    flex-direction: column;
 }
 

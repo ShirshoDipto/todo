@@ -1,6 +1,6 @@
 import List from './list'
 import Todo from './todo'
-import {lists, addNewListInterface, removeExistingMarker, updateListsAndTodos} from './manageListInterface'
+import {lists, addNewListInterface, removeExistingMarker, updateListsAndTodos, updateArrayAndTodo} from './manageListInterface'
 import {addNewTodoInterface, changeTodoHeader, showListsTodos, deleteRelatedTodo} from './manageTodoInterface'
 
 
@@ -34,6 +34,7 @@ function add_a_Todo(e) {
 
     // bring the todo interface
     const newTodoDOM = addNewTodoInterface(allTodo, newTodo);
+    newTodoDOM.onclick = modifyTodo;
 
     // hide modal
     newTodoModal.setAttribute('id', 'hide');
@@ -95,6 +96,23 @@ function deleteElement(element) {
         if (todoHeader.getAttribute('list-number') === index) {
             showRelatedTodos(x, index);
         }
+    }
+}
+
+
+function modifyTodo(e) {
+    if (e.target.classList.value === 'delete') {
+        const listNumber = this.getAttribute('list-number');
+        const todoNumber = this.getAttribute('todo-number');
+
+        // delete todo from the lists Array and the dom
+        lists[parseInt(listNumber)].getTodos.splice(parseInt(todoNumber), 1);
+        console.log(lists);
+        allTodo.removeChild(this);
+
+        // update todo array
+        const allTodos = Array.from(document.querySelectorAll('.all-todo .a-todo'));
+        updateArrayAndTodo(allTodos);
     }
 }
 

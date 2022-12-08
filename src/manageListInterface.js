@@ -54,6 +54,7 @@ export function addNewListInterface(listObject, container, insert_before) {
 
 
 export function removeExistingMarker(container) {
+    if (lists.length === 0) return;
     const firstList = container.firstElementChild;
     if (firstList.getAttribute('id') === 'active-list') {
         firstList.removeAttribute('id');
@@ -70,18 +71,28 @@ export function removeExistingMarker(container) {
     }
 }
 
-export function updateListsAndTodos(container, listNumber, allTodos) {
-    lists.splice(parseInt(listNumber), 1);
-    let index = 0;
 
-    //  update doms
-    for (let list of container) {
-        list.removeAttribute('list-number');
-        list.setAttribute('list-number', `${index}`);
-        index++;
-    }
+// export function updateDOMs(num) {
+//     let index = 0;
 
-    // update Array and todo DOM's
+//     //  update doms
+//     for (let list of container) {
+//         list.removeAttribute(num);
+//         list.setAttribute(num, `${index}`);
+//         index++;
+//     }
+
+// }
+
+// export function updateLists(allLists) {
+//     for (let i = 0; i < lists.length; i++) {
+//         lists[i].setListNumber = i;
+//         allLists
+//     }
+// }
+
+
+export function updateArrayAndTodo(allTodos) {
     let allTodoIndex = 0;
     for (let i = 0; i < lists.length; i++) {
         lists[i].setListNumber = i;
@@ -89,17 +100,37 @@ export function updateListsAndTodos(container, listNumber, allTodos) {
             continue;
         }
         else {
+            let todo_no = 0;
             const list_no = lists[i].getListNumber;
             for (let x of lists[i].getTodos) {
                 x.setListNumber = i;
+                x.setTodoNumber = todo_no;
                 let theDOM = allTodos[allTodoIndex];
                 theDOM.removeAttribute('list-number');
                 theDOM.setAttribute('list-number', `${list_no}`);
+                theDOM.removeAttribute('todo-number');
+                theDOM.setAttribute('todo-number', `${todo_no}`);
+                todo_no++;
                 allTodoIndex++;
             }
-
         }
     }
+}
+
+export function updateListsAndTodos(container, listNumber, allTodos) {
+
+    lists.splice(parseInt(listNumber), 1);
+    //  update doms
+    let index = 0;
+
+    for (let list of container) {
+        list.removeAttribute('list-number');
+        list.setAttribute('list-number', `${index}`);
+        index++;
+    }
+
+    // update Array and todo DOM's
+    updateArrayAndTodo(allTodos);
 }
 
 

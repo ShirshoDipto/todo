@@ -54,25 +54,21 @@ export function addNewTodoInterface(container, theTodo) {
 
     const icon2 = document.createElement('img');
     icon2.setAttribute('src', 'icons/plus.png');
-    collapseImg.setAttribute('alt', 'icon img');
     icon2.classList.add('icon');
     right.appendChild(icon2);
 
     const icon3 = document.createElement('img');
     icon3.setAttribute('src', 'icons/plus.png');
-    collapseImg.setAttribute('alt', 'icon img');
     icon3.classList.add('icon');
     right.appendChild(icon3);
 
     const icon4 = document.createElement('img');
     icon4.setAttribute('src', 'icons/plus.png');
-    collapseImg.setAttribute('alt', 'icon img');
     icon4.classList.add('icon');
     right.appendChild(icon4);
 
     const icon5 = document.createElement('img');
     icon5.setAttribute('src', 'icons/plus.png');
-    collapseImg.setAttribute('alt', 'icon img');
     icon5.classList.add('delete');
     right.appendChild(icon5);
 
@@ -109,13 +105,6 @@ export function deleteRelatedTodo(container, allTodos, listNumber){
         }
     }
 }
-
-
-// export function updateTodoDOM(anArray) {
-//     for (let x of anArray) {
-        
-//     }
-// }
 
 // <div class="a-todo">
 //     <div class="a-list">

@@ -72,26 +72,6 @@ export function removeExistingMarker(container) {
 }
 
 
-// export function updateDOMs(num) {
-//     let index = 0;
-
-//     //  update doms
-//     for (let list of container) {
-//         list.removeAttribute(num);
-//         list.setAttribute(num, `${index}`);
-//         index++;
-//     }
-
-// }
-
-// export function updateLists(allLists) {
-//     for (let i = 0; i < lists.length; i++) {
-//         lists[i].setListNumber = i;
-//         allLists
-//     }
-// }
-
-
 export function updateArrayAndTodo(allTodos) {
     let allTodoIndex = 0;
     for (let i = 0; i < lists.length; i++) {
@@ -132,24 +112,6 @@ export function updateListsAndTodos(container, listNumber, allTodos) {
     // update Array and todo DOM's
     updateArrayAndTodo(allTodos);
 }
-
-
-// export function updateTodoDOM(allTodos) {
-//     let allTodoIndex = 0;
-//     for (let list of lists) {
-//         if (list.getTodos.length === 0) {
-//             continue;
-//         }
-//         else {
-//             const listNumber = list.getListNumber;
-//             for (let todo of list.getTodo) {
-//                 let theDOM = allTodos[allTodoIndex];
-//                 theDOM.removeAttribute('list-number');
-//                 theDOM.setAttribute('list-number', `${listNumber}`);
-//             }
-//         }
-//     }
-// }
 
 
 // <div class="a-list">

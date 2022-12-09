@@ -2,6 +2,8 @@ import List from './list'
 import Todo from './todo'
 import {lists, addNewListInterface, removeExistingMarker, updateListsAndTodos, updateArrayAndTodo} from './manageListInterface'
 import {addNewTodoInterface, changeTodoHeader, showListsTodos, deleteRelatedTodo} from './manageTodoInterface'
+import {saveData, loadData} from './storageManagement'
+
 
 
 function addList(e) {
@@ -20,6 +22,7 @@ function addList(e) {
     e.target.reset();
     newListModal.setAttribute('id', 'hide');
     console.log(lists);
+    saveData(lists);
 }
 
 
@@ -28,7 +31,7 @@ function add_a_Todo(e) {
     // manage Array of lists
     const listNumber = todoHeader.getAttribute('list-number');
     const todoNumber = lists[parseInt(listNumber)].getTodos.length;
-    let newTodo = new Todo(todoName.value, description.value, dueDate.value, priority.value, listNumber, false, todoNumber);
+    let newTodo = new Todo(todoName.value, description.value, dueDate.value, priority.value, listNumber, 0, todoNumber);
     lists[parseInt(listNumber)].getTodos.push(newTodo);
 
 
@@ -40,6 +43,7 @@ function add_a_Todo(e) {
     newTodoModal.setAttribute('id', 'hide');
     e.target.reset();
     console.log(lists);
+    saveData(lists);
 }
 
 
@@ -61,6 +65,7 @@ function makeListActive(e) {
 
     console.log(lists);
 }
+
 
 function showRelatedTodos(x, listNo){
     if (lists.length === 0) {
@@ -97,6 +102,7 @@ function deleteElement(element) {
             showRelatedTodos(x, index);
         }
     }
+    saveData(lists);
 }
 
 
@@ -114,12 +120,30 @@ function modifyTodo(e) {
         const allTodos = Array.from(document.querySelectorAll('.all-todo .a-todo'));
         updateArrayAndTodo(allTodos);
     }
+    saveData();
 }
+
+
+localStorage.clear();
+
+
+
 
 
 // Adding default list
 let defaultList = new List('My Day', [], 0);
 lists.push(defaultList);
+
+
+
+
+// ############## MAIN FUNCTION #################
+
+
+if (localStorage.getItem('html-page')) {
+    loadData();
+}
+
 
 // All global variables and eventListeners
 const allList = document.querySelector('.all-list');
@@ -137,7 +161,8 @@ const description = document.querySelector('#description');
 const allTodo = document.querySelector('.all-todo');
 const todoHeader = document.querySelector('.todo-header');
 
-const defaultListDOM = document.querySelector('.all-list .a-list');
+const defaultListDOM = document.querySelectorAll('.all-list .a-list');
+const allTodoDOMS = document.querySelectorAll('.all-todo .a-todo');
 
 addTodo.onclick = () => {
     newTodoModal.removeAttribute('id');
@@ -158,4 +183,10 @@ todoForm.onreset = () => {
     newTodoModal.setAttribute('id', 'hide');
 }
 
-defaultListDOM.onclick = makeListActive;
+defaultListDOM.forEach(list => {
+    list.onclick = makeListActive;
+});
+
+allTodoDOMS.forEach(todo => {
+    todo.onclick = modifyTodo;
+});

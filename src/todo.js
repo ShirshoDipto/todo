@@ -26,11 +26,11 @@ export default class Todo {
     }
 
     changeCompleteStatus() {
-        if (this.completed === true) {
-            this.completed = false;
+        if (this.completed === 1) {
+            this.completed = 0;
         }
         else {
-            this.completed = true;
+            this.completed = 1;
         }
     }
 

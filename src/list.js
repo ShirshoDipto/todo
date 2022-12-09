@@ -5,24 +5,7 @@ export default class List {
         this.title = title;
         this.todos = todos;
         this.listNumber = listNumber;
-        // this.dueDate = dueDate;
-        // this.active = active;
     }
-
-    // get getActive() {
-    //     return this.active;
-    // }
-    // set setActive(value) {
-    //     this.active = value;
-    // }
-
-    // get getDueDate() {
-    //     return this.dueDate;
-    // }
-
-    // set setDueDate(value) {
-    //     this.dueDate = value;
-    // }
 
     get getListNumber() {return this.listNumber}
 
@@ -33,6 +16,10 @@ export default class List {
     get getTitle() {return this.title}
 
     get getTodos() {return this.todos}
+
+    set setTodos(value) {
+        this.todos = value;
+    }
 
     set setTitle(value) {
         this.title = value;

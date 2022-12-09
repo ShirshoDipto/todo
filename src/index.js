@@ -21,7 +21,7 @@ function addList(e) {
     newListDOM.onclick = makeListActive;
     e.target.reset();
     newListModal.setAttribute('id', 'hide');
-    console.log(lists);
+    console.table(lists);
     saveData(lists);
 }
 
@@ -29,7 +29,7 @@ function addList(e) {
 function add_a_Todo(e) {
     e.preventDefault()
     // manage Array of lists
-    const listNumber = todoHeader.getAttribute('list-number');
+    const listNumber = parseInt(todoHeader.getAttribute('list-number'));
     const todoNumber = lists[parseInt(listNumber)].getTodos.length;
     let newTodo = new Todo(todoName.value, description.value, dueDate.value, priority.value, listNumber, 0, todoNumber);
     lists[parseInt(listNumber)].getTodos.push(newTodo);
@@ -42,7 +42,7 @@ function add_a_Todo(e) {
     // hide modal
     newTodoModal.setAttribute('id', 'hide');
     e.target.reset();
-    console.log(lists);
+    console.table(lists);
     saveData(lists);
 }
 
@@ -63,7 +63,7 @@ function makeListActive(e) {
         showListsTodos(allTodos, listNumber);
     }
 
-    console.log(lists);
+    console.table(lists);
 }
 
 
@@ -113,14 +113,14 @@ function modifyTodo(e) {
 
         // delete todo from the lists Array and the dom
         lists[parseInt(listNumber)].getTodos.splice(parseInt(todoNumber), 1);
-        console.log(lists);
+        console.table(lists);
         allTodo.removeChild(this);
 
         // update todo array
         const allTodos = Array.from(document.querySelectorAll('.all-todo .a-todo'));
         updateArrayAndTodo(allTodos);
     }
-    saveData();
+    saveData(lists);
 }
 
 
@@ -133,6 +133,7 @@ localStorage.clear();
 // Adding default list
 let defaultList = new List('My Day', [], 0);
 lists.push(defaultList);
+saveData(lists);
 
 
 
@@ -140,9 +141,9 @@ lists.push(defaultList);
 // ############## MAIN FUNCTION #################
 
 
-if (localStorage.getItem('html-page')) {
-    loadData();
-}
+// if (localStorage.getItem('html-page')) {
+//     loadData();
+// }
 
 
 // All global variables and eventListeners

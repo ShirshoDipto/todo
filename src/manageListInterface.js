@@ -32,7 +32,7 @@ export function addNewListInterface(listObject, container, insert_before) {
     left.appendChild(listTitle);
 
     const icon2 = document.createElement('img');
-    icon2.classList.add('icon');
+    icon2.classList.add('edit');
     icon2.setAttribute('src', 'icons/plus.png');
     right.appendChild(icon2);
 
@@ -116,15 +116,30 @@ export function updateListsAndTodos(container, listNumber, allTodos) {
 }
 
 
-// <div class="a-list">
-//     <div class="left">
-//         <img class="icon" src="icons/plus.png" alt="pic">
-//         <div class="list-title">My Day</div>
-//     </div>
-//     <div class="right">
-//         <img class="icon" src="icons/plus.png" alt="E">
-//         <img class="icon" src="icons/plus.png" alt="U">
-//         <img class="icon" src="icons/plus.png" alt="D">
-//         <img class="icon" src="icons/plus.png" alt="Del">
-//     </div>
-// </div>
+export function editList(element) {
+    const listTitle = element.firstElementChild.lastElementChild;
+    listTitle.setAttribute('id', 'hide');
+
+    // create an input Element
+    const listNameInput = document.createElement('input');
+    listNameInput.setAttribute('type', 'text');
+    listNameInput.setAttribute('maxlength', '30');
+    listNameInput.required = true;
+    listNameInput.value = listTitle.textContent;
+
+    // create the form
+    const listNameForm = document.createElement('form');
+    listNameForm.setAttribute('action', '#');
+
+    element.firstElementChild.appendChild(listNameForm);
+    listNameForm.appendChild(listNameInput);
+    console.log(element);
+
+    return listNameForm;
+}
+
+
+export function undoChange(element) {
+    element.firstElementChild.removeChild(element.firstElementChild.lastElementChild);
+    element.firstElementChild.lastElementChild.removeAttribute('id');
+}

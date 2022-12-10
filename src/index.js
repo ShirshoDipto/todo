@@ -1,6 +1,6 @@
 import List from './list'
 import Todo from './todo'
-import {lists, addNewListInterface, removeExistingMarker, updateListsAndTodos, updateArrayAndTodo} from './manageListInterface'
+import {lists, addNewListInterface, removeExistingMarker, updateListsAndTodos, updateArrayAndTodo, editList, undoChange} from './manageListInterface'
 import {addNewTodoInterface, changeTodoHeader, showListsTodos, deleteRelatedTodo} from './manageTodoInterface'
 import {saveData, loadData} from './storageManagement'
 
@@ -8,6 +8,7 @@ let activeListNumber = '0';
 
 
 function addList(e) {
+    console.log(e.target);
     e.preventDefault()
     // manage Array of lists
     let newList = new List(newListinput.value, [], lists.length);
@@ -49,17 +50,36 @@ function add_a_Todo(e) {
 }
 
 
+function saveEditedList(e) {
+    e.preventDefault();
+    console.log(activeListNumber);
+    let theList = lists[parseInt(activeListNumber)];
+    theList.setTitle = e.target.firstElementChild.value;
+    e.target.previousElementSibling.textContent = e.target.firstElementChild.value;
+    // console.log(e.target.parentNode.parentNode);
+    undoChange(e.target.parentNode.parentNode);
+    saveData(lists, activeListNumber);
+    // let anArray = lists;
+    // lists = [];
+    // loadPage(anArray);
+}
+
+
 function makeListActive(e) {
     // handle delete, up, down, complete
     if (e.target.classList.value === 'delete') {
         deleteElement(this);
+    }
+    else if (e.target.classList.value === 'edit') {
+        const listNameForm = editList(this);
+        listNameForm.onsubmit = saveEditedList;
     }
     else {
         removeExistingMarker(allList);
         this.setAttribute('id', 'active-list');
         
         // get the listObject
-        let listNumber = e.target.getAttribute('list-number');
+        let listNumber = this.getAttribute('list-number');
         changeTodoHeader(todoHeader, listNumber, this.firstElementChild.lastElementChild.textContent);
         const allTodos = Array.from(document.querySelectorAll('.a-todo'));
         showListsTodos(allTodos, listNumber);
@@ -150,13 +170,6 @@ function modifyTodo(e) {
 }
 
 
-// there is an edge case
-// 1. what if the page is empty?
-// 2. 
-
-// test
-// check if activated in the last list
-// 
 function loadPage(anArray) {
     if (anArray.length === 0) return;
     for (let list of anArray) {
@@ -173,6 +186,7 @@ function loadPage(anArray) {
     const allTodos = Array.from(document.querySelectorAll('.a-todo'));
     changeTodoHeader(todoHeader, activeListNumber, lists[parseInt(activeListNumber)].getTitle);
     showListsTodos(allTodos, activeListNumber);
+    console.log(lists);
 }
 
 

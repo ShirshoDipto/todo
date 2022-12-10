@@ -110,22 +110,3 @@ export function deleteRelatedTodo(container, allTodos, listNumber){
     }
 }
 
-// <div class="a-todo">
-//     <div class="a-list">
-//         <div class="left">
-//             <img class="icon" src="icons/plus.png" alt="">
-//             <div>name of the todo</div>
-//         </div>
-//         <div class="right">
-//             <img class="icon" src="icons/plus.png" alt="E">
-//             <img class="icon" src="icons/plus.png" alt="U">
-//             <img class="icon" src="icons/plus.png" alt="D">
-//             <img class="icon" src="icons/plus.png" alt="Del">
-//         </div>
-//     </div>
-//     <div class="description" id="hide">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse ipsam fugiat eum hic ipsum dolorum blanditiis iusto deleniti perferendis enim nisi adipisci iure natus ad maxime, amet, corporis quibusdam aliquam!</div>
-//     <div class="collapse">
-//         <img src="icons/plus.png" alt="collapse icon">
-//     </div>
-// </div>
-

@@ -135,7 +135,7 @@
     border-left: 4px solid blue;
 }
 
-.icon, .delete {
+.icon, .delete, .edit {
     border: thin solid red;
 }
 

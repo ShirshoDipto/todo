@@ -13,6 +13,7 @@ function addList(e) {
     let newList = new List(newListinput.value, [], lists.length);
     removeExistingMarker(allList);
     const newListDOM = addNewListInterface(newList, allList, newListModal);
+    newListDOM.setAttribute('id', 'active-list');
     const allTodos = Array.from(document.querySelectorAll('.a-todo'));
 
     // manage todo interface
@@ -23,7 +24,7 @@ function addList(e) {
     e.target.reset();
     newListModal.setAttribute('id', 'hide');
     console.log(lists);
-    saveData(lists);
+    saveData(lists, activeListNumber);
 }
 
 
@@ -44,7 +45,7 @@ function add_a_Todo(e) {
     newTodoModal.setAttribute('id', 'hide');
     e.target.reset();
     console.table(lists);
-    saveData(lists);
+    saveData(lists, activeListNumber);
 }
 
 
@@ -63,16 +64,18 @@ function makeListActive(e) {
         const allTodos = Array.from(document.querySelectorAll('.a-todo'));
         showListsTodos(allTodos, listNumber);
         activeListNumber = listNumber;
+        localStorage.removeItem('activeListNumber');
+        console.log(localStorage);
+        localStorage.setItem('activeListNumber', activeListNumber);
     }
 
-    console.table(lists);
+    console.log(lists);
 }
 
 
 function showRelatedTodos(x, listNo){
     if (lists.length === 0) {
-        todoHeader.firstElementChild.textContent = 'Add a List';
-        todoHeader.firstElementChild.nextElementSibling.textContent = 'placeholder';
+        changeTodoHeader(todoHeader, null, 'Add a List');
     }
     else if (listNo === `0`) {
         const activeList = document.querySelector('.all-list div[list-number="0"]');
@@ -101,10 +104,11 @@ function deleteElement(element) {
         deleteRelatedTodo(allTodo, x, index);
         x = Array.from(document.querySelectorAll('.all-todo .a-todo'));
         updateListsAndTodos(container, index, x);
-        showRelatedTodos(x, index);
+        if (index === activeListNumber) {
+            showRelatedTodos(x, index);}
         activeListNumber = index;
     }
-    saveData(lists);
+    saveData(lists, activeListNumber);
 }
 
 
@@ -122,7 +126,7 @@ function modifyTodo(e) {
         const allTodos = Array.from(document.querySelectorAll('.all-todo .a-todo'));
         updateArrayAndTodo(allTodos);
     }
-    saveData(lists);
+    saveData(lists, activeListNumber);
 }
 
 
@@ -130,19 +134,26 @@ function modifyTodo(e) {
 // 1. what if the page is empty?
 // 2. 
 
-
-// function loadPage(anArray) {
-//     for (let list of anArray) {
-//         if (list.getListNumber !== 0) {
-//             addNewListInterface(list, allList, newListModal);
-//         }
-
-//     }
-// }
-
-
-localStorage.clear();
-
+// test
+// check if activated in the last list
+// 
+function loadPage(anArray) {
+    if (anArray.length === 0) return;
+    for (let list of anArray) {
+        addNewListInterface(list, allList, newListModal);
+        for (let todo of list.getTodos) {
+            addNewTodoInterface(allTodo, todo);
+        }
+    }
+    const activeList = document.querySelector(`.all-list div[list-number="${activeListNumber}"]`);
+    // removeExistingMarker(allList);
+    if (activeList !== null) {
+        activeList.setAttribute('id', 'active-list');
+    }
+    const allTodos = Array.from(document.querySelectorAll('.a-todo'));
+    changeTodoHeader(todoHeader, activeListNumber, lists[parseInt(activeListNumber)].getTitle);
+    showListsTodos(allTodos, activeListNumber);
+}
 
 
 // ############## MAIN FUNCTION #################
@@ -167,15 +178,20 @@ const todoHeader = document.querySelector('.todo-header');
 
 
 // loading the existing data
-if (localStorage.getItem('html-page')) {
+if (localStorage.getItem('activeListNumber')) {
     let anArray = loadData();
+    activeListNumber = localStorage.getItem('activeListNumber');
+    loadPage(anArray);
     // loadPage(anArray);
 }
 else {
     // Adding default list
     let defaultList = new List('My Day', [], 0);
     addNewListInterface(defaultList, allList, newListModal);
-    saveData(lists);
+    changeTodoHeader(todoHeader, '0', 'My Day');
+    const activeList = document.querySelector(`.all-list div[list-number="${defaultList.getListNumber}"]`);
+    activeList.setAttribute('id', 'active-list');
+    saveData(lists, activeListNumber);
 }
 
 

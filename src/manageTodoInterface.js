@@ -78,6 +78,9 @@ export function addNewTodoInterface(container, theTodo) {
 
 // change todo header
 export function changeTodoHeader(todoHeader, listNumber, title) {
+    if (listNumber === null) {
+        todoHeader.firstElementChild.textContent = title;
+    }
     todoHeader.setAttribute('list-number', `${listNumber}`);
     todoHeader.firstElementChild.textContent = title;
 }

@@ -19,11 +19,12 @@ export function saveTodo(anArray, l) {
 }
 
 
-export function saveData(lists) {
+export function saveData(lists, activeListNumber) {
     localStorage.clear()
     let l = 0;
 
     // save lists
+    localStorage.setItem('activeListNumber', activeListNumber);
     for (let elem of lists) {
         let listTitle = elem.getTitle;
         let listNumber = elem.getListNumber;

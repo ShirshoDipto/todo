@@ -9,7 +9,7 @@ export function addNewListInterface(listObject, container, insert_before) {
     const aList = document.createElement('div');
     aList.classList.add('a-list');
     aList.setAttribute('list-number', `${listObject.getListNumber}`);
-    aList.setAttribute('id', 'active-list');
+    // aList.setAttribute('id', 'active-list');
     container.insertBefore(aList, insert_before);
 
 

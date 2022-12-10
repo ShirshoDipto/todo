@@ -65,7 +65,6 @@ function makeListActive(e) {
         showListsTodos(allTodos, listNumber);
         activeListNumber = listNumber;
         localStorage.removeItem('activeListNumber');
-        console.log(localStorage);
         localStorage.setItem('activeListNumber', activeListNumber);
     }
 
@@ -111,6 +110,15 @@ function deleteElement(element) {
     saveData(lists, activeListNumber);
 }
 
+function changeCheck(element) {
+    if (element.checked === true) {
+        element.checked = false;
+    }
+    else {
+        element.checked = true;
+    }
+}
+
 
 function modifyTodo(e) {
     if (e.target.classList.value === 'delete') {
@@ -125,6 +133,18 @@ function modifyTodo(e) {
         // update todo array
         const allTodos = Array.from(document.querySelectorAll('.all-todo .a-todo'));
         updateArrayAndTodo(allTodos);
+    }
+    else {
+        if (e.target.getAttribute('type') === 'checkbox') {
+            changeCheck(e.target);
+        }
+        const listNumber = this.getAttribute('list-number');
+        const todoNumber = this.getAttribute('todo-number');
+        let theList = lists[parseInt(listNumber)];
+        let theTodo = theList.getTodos[parseInt(todoNumber)];
+        theTodo.changeCompleteStatus();
+        changeCheck(this.firstElementChild.firstElementChild.firstElementChild);
+        console.log(this.firstElementChild.firstElementChild.firstElementChild);
     }
     saveData(lists, activeListNumber);
 }

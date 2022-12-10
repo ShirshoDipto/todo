@@ -45,7 +45,9 @@ export function addNewTodoInterface(container, theTodo) {
     input1.setAttribute('type', 'checkbox');
     input1.setAttribute('id', 'todo-checkbox');
     input1.setAttribute('name', 'todo-checkbox');
-    // input1.classList.add('icon');
+    if (theTodo.getIsCompleted === 1) {
+        input1.checked = true;
+    }
     left.appendChild(input1);
 
     const titleTodo = document.createElement('div');

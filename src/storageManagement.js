@@ -31,8 +31,6 @@ export function saveData(lists) {
         saveTodo(elem.getTodos, l);
         l++;
     }
-    // console.log(localStorage);
-    loadData();
 }
 
 
@@ -94,6 +92,7 @@ export function loadData() {
     }
     let finalArray = sortArrays(arrayLists);
     insertTodosToLists(finalArray, arrayTodos);
+    return finalArray;
     console.log('printing the converted array')
     console.log(finalArray);
 }

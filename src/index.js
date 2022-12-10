@@ -4,6 +4,7 @@ import {lists, addNewListInterface, removeExistingMarker, updateListsAndTodos, u
 import {addNewTodoInterface, changeTodoHeader, showListsTodos, deleteRelatedTodo} from './manageTodoInterface'
 import {saveData, loadData} from './storageManagement'
 
+let activeListNumber = '0';
 
 
 function addList(e) {
@@ -11,17 +12,17 @@ function addList(e) {
     // manage Array of lists
     let newList = new List(newListinput.value, [], lists.length);
     removeExistingMarker(allList);
-    addNewListInterface(newList, allList, newListModal, todoHeader);
+    const newListDOM = addNewListInterface(newList, allList, newListModal);
     const allTodos = Array.from(document.querySelectorAll('.a-todo'));
 
     // manage todo interface
     changeTodoHeader(todoHeader, newList.getListNumber, newList.getTitle);
-    showListsTodos(allTodos, newList.getListNumber);
-    const newListDOM = document.getElementById('active-list');
+    showListsTodos(allTodos, newList.getListNumber.toString());
+    activeListNumber = newList.getListNumber.toString();
     newListDOM.onclick = makeListActive;
     e.target.reset();
     newListModal.setAttribute('id', 'hide');
-    console.table(lists);
+    console.log(lists);
     saveData(lists);
 }
 
@@ -61,6 +62,7 @@ function makeListActive(e) {
         changeTodoHeader(todoHeader, listNumber, this.firstElementChild.lastElementChild.textContent);
         const allTodos = Array.from(document.querySelectorAll('.a-todo'));
         showListsTodos(allTodos, listNumber);
+        activeListNumber = listNumber;
     }
 
     console.table(lists);
@@ -70,19 +72,21 @@ function makeListActive(e) {
 function showRelatedTodos(x, listNo){
     if (lists.length === 0) {
         todoHeader.firstElementChild.textContent = 'Add a List';
-        todoHeader.firstElementChild.nextElementSibling.textContent = '';
+        todoHeader.firstElementChild.nextElementSibling.textContent = 'placeholder';
     }
     else if (listNo === `0`) {
         const activeList = document.querySelector('.all-list div[list-number="0"]');
         activeList.setAttribute('id', 'active-list');
         changeTodoHeader(todoHeader, listNo, lists[0].getTitle);
         showListsTodos(x, `0`);
+        activeListNumber = '0';
     }
     else {
         const activeList = document.querySelector(`.all-list div[list-number="${parseInt(listNo)-1}"]`);
         activeList.setAttribute('id', 'active-list');
         changeTodoHeader(todoHeader, listNo, lists[parseInt(listNo)-1].getTitle);
         showListsTodos(x, `${parseInt(listNo)-1}`);
+        activeListNumber = `${parseInt(listNo)-1}`;
     }
 }
 
@@ -98,9 +102,7 @@ function deleteElement(element) {
         x = Array.from(document.querySelectorAll('.all-todo .a-todo'));
         updateListsAndTodos(container, index, x);
         showRelatedTodos(x, index);
-        if (todoHeader.getAttribute('list-number') === index) {
-            showRelatedTodos(x, index);
-        }
+        activeListNumber = index;
     }
     saveData(lists);
 }
@@ -124,26 +126,26 @@ function modifyTodo(e) {
 }
 
 
+// there is an edge case
+// 1. what if the page is empty?
+// 2. 
+
+
+// function loadPage(anArray) {
+//     for (let list of anArray) {
+//         if (list.getListNumber !== 0) {
+//             addNewListInterface(list, allList, newListModal);
+//         }
+
+//     }
+// }
+
+
 localStorage.clear();
 
 
 
-
-
-// Adding default list
-let defaultList = new List('My Day', [], 0);
-lists.push(defaultList);
-saveData(lists);
-
-
-
-
 // ############## MAIN FUNCTION #################
-
-
-// if (localStorage.getItem('html-page')) {
-//     loadData();
-// }
 
 
 // All global variables and eventListeners
@@ -161,6 +163,21 @@ const priority = document.querySelector('#priority');
 const description = document.querySelector('#description');
 const allTodo = document.querySelector('.all-todo');
 const todoHeader = document.querySelector('.todo-header');
+
+
+
+// loading the existing data
+if (localStorage.getItem('html-page')) {
+    let anArray = loadData();
+    // loadPage(anArray);
+}
+else {
+    // Adding default list
+    let defaultList = new List('My Day', [], 0);
+    addNewListInterface(defaultList, allList, newListModal);
+    saveData(lists);
+}
+
 
 const defaultListDOM = document.querySelectorAll('.all-list .a-list');
 const allTodoDOMS = document.querySelectorAll('.all-todo .a-todo');

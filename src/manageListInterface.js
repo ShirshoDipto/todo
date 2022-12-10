@@ -50,6 +50,8 @@ export function addNewListInterface(listObject, container, insert_before) {
     icon5.classList.add('delete');
     icon5.setAttribute('src', 'icons/plus.png');
     right.appendChild(icon5);
+
+    return aList;
 }
 
 

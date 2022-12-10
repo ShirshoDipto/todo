@@ -84,7 +84,6 @@ export function changeTodoHeader(todoHeader, listNumber, title) {
 
 // show all todos of a particular list
 export function showListsTodos(allTodos, listNumber) {
-    // method description goes here
     if (allTodos === null) return
     for (let todo of allTodos) {
         if (todo.getAttribute('list-number') === listNumber) {

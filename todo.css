@@ -139,6 +139,10 @@
     border: thin solid red;
 }
 
+.icon{
+    /* background-image: url(icons/weather-sunny.png); */
+}
+
 .all-todo{
     display: flex;
     flex-direction: column;

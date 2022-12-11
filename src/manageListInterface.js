@@ -27,7 +27,7 @@ export function addNewListInterface(listObject, container, insert_before) {
         icon1.setAttribute('src', 'icons/weather-sunny.png');
     }
     else {
-        icon1.setAttribute('src', 'icons/plus.png');
+        icon1.setAttribute('src', 'icons/todo.png');
     }
     left.appendChild(icon1);
 
@@ -38,22 +38,22 @@ export function addNewListInterface(listObject, container, insert_before) {
 
     const icon2 = document.createElement('img');
     icon2.classList.add('edit');
-    icon2.setAttribute('src', 'icons/plus.png');
+    icon2.setAttribute('src', 'icons/pencil.png');
     right.appendChild(icon2);
 
     const icon3 = document.createElement('img');
     icon3.classList.add('icon');
-    icon3.setAttribute('src', 'icons/plus.png');
+    icon3.setAttribute('src', 'icons/arrow-up.png');
     right.appendChild(icon3);
 
     const icon4 = document.createElement('img');
     icon4.classList.add('icon');
-    icon4.setAttribute('src', 'icons/plus.png');
+    icon4.setAttribute('src', 'icons/arrow-down.png');
     right.appendChild(icon4);
 
     const icon5 = document.createElement('img');
     icon5.classList.add('delete');
-    icon5.setAttribute('src', 'icons/plus.png');
+    icon5.setAttribute('src', 'icons/trash.png');
     right.appendChild(icon5);
 
     return aList;

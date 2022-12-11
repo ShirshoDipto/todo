@@ -37,7 +37,7 @@ export function addNewTodoInterface(container, theTodo) {
     aList.appendChild(right);
 
     const collapseImg = document.createElement('img');
-    collapseImg.setAttribute('src', 'icons/plus.png');
+    collapseImg.setAttribute('src', 'icons/unfold.png');
     collapseImg.setAttribute('alt', 'collapse icon');
     collapse.appendChild(collapseImg);
 
@@ -55,22 +55,22 @@ export function addNewTodoInterface(container, theTodo) {
     left.appendChild(titleTodo);
 
     const icon2 = document.createElement('img');
-    icon2.setAttribute('src', 'icons/plus.png');
+    icon2.setAttribute('src', 'icons/pencil.png');
     icon2.classList.add('edit');
     right.appendChild(icon2);
 
     const icon3 = document.createElement('img');
-    icon3.setAttribute('src', 'icons/plus.png');
+    icon3.setAttribute('src', 'icons/arrow-up.png');
     icon3.classList.add('icon');
     right.appendChild(icon3);
 
     const icon4 = document.createElement('img');
-    icon4.setAttribute('src', 'icons/plus.png');
+    icon4.setAttribute('src', 'icons/arrow-down.png');
     icon4.classList.add('icon');
     right.appendChild(icon4);
 
     const icon5 = document.createElement('img');
-    icon5.setAttribute('src', 'icons/plus.png');
+    icon5.setAttribute('src', 'icons/trash.png');
     icon5.classList.add('delete');
     right.appendChild(icon5);
 
@@ -144,33 +144,4 @@ export function editTodo(element, editModal, lists) {
 export function updateTodoDOM(theTodo, todoDOM) {
     todoDOM.firstElementChild.firstElementChild.lastElementChild.textContent = `${theTodo.getTitle} (Due: ${theTodo.getDueDate})`;
     todoDOM.firstElementChild.nextElementSibling.textContent = `${theTodo.getDescription}`
-} 
-
-
-
-        // <div class="edit-todo-modal" id="hide">
-        //     <h2 class="todo-modal-header">Edit Task</h2>
-
-        //     <form class="edit-form" action="#">
-        //         <input id="todo-name" type="text" name="todo-name" maxlength="50" placeholder="Title" required>
-        //         <div class="due-date">
-        //             <label for="due-date">Due Date:</label>
-        //             <input id="due-date" type="date" name="due-date">
-        //         </div>
-        //         <div class="priority">
-        //             <label for="priority">Select Priority (Optional)</label>
-        //             <select name="priority" id="priority">
-        //                 <option value="none" selected>None</option>
-        //                 <option value="high">High</option>
-        //                 <option value="medium">Medium</option>
-        //                 <option value="normal">Normal</option>
-        //             </select>
-        //         </div>
-        //         <textarea name="description" id="description" cols="30" rows="10" maxlength="300" placeholder="give some description (optional)"></textarea>
-        //         <div class="add-cancel">
-        //             <button type="submit" class="modal-todo">Save</button>
-        //             <button type="reset" class="cancel-todo">Cancel</button>
-        //         </div>
-        //     </form>
-        // </div>
-
+}

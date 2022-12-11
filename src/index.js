@@ -24,6 +24,7 @@ function addList(e) {
     newListDOM.onclick = makeListActive;
     e.target.reset();
     newListModal.setAttribute('id', 'hide');
+    allList.scrollTo(0, allList.scrollHeight);
     console.log(lists);
     saveData(lists, activeListNumber);
 }
@@ -44,6 +45,7 @@ function add_a_Todo(e) {
 
     // hide modal
     newTodoModal.setAttribute('id', 'hide');
+    allTodo.scrollTo(0, allTodo.scrollHeight);
     e.target.reset();
     console.table(lists);
     saveData(lists, activeListNumber);
@@ -122,7 +124,8 @@ function deleteElement(element) {
         updateListsAndTodos(container, index, x);
         if (index === activeListNumber) {
             showRelatedTodos(x, index);}
-        activeListNumber = index;
+        activeListNumber = document.querySelector('#active-list').getAttribute('list-number');
+        console.log(activeListNumber);
     }
     saveData(lists, activeListNumber);
 }
@@ -263,6 +266,7 @@ addTodo.onclick = () => {
 
 addNewList.addEventListener('click', () => {
     newListModal.removeAttribute('id');
+    allList.scrollTo(0, allList.scrollHeight);
 })
 
 

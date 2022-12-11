@@ -59,6 +59,8 @@ function saveEditedList(e) {
     theList.setTitle = e.target.firstElementChild.value;
     e.target.previousElementSibling.textContent = e.target.firstElementChild.value;
     // console.log(e.target.parentNode.parentNode);
+    let listNumber = activeListNumber;
+    changeTodoHeader(todoHeader, listNumber, e.target.firstElementChild.value);
     undoChange(e.target.parentNode.parentNode);
     saveData(lists, activeListNumber);
 }

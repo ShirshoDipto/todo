@@ -61,12 +61,12 @@ export function addNewTodoInterface(container, theTodo) {
 
     const icon3 = document.createElement('img');
     icon3.setAttribute('src', 'icons/arrow-up.png');
-    icon3.classList.add('icon');
+    icon3.classList.add('up-arrow');
     right.appendChild(icon3);
 
     const icon4 = document.createElement('img');
     icon4.setAttribute('src', 'icons/arrow-down.png');
-    icon4.classList.add('icon');
+    icon4.classList.add('down-arrow');
     right.appendChild(icon4);
 
     const icon5 = document.createElement('img');

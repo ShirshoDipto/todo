@@ -42,12 +42,12 @@ export function addNewListInterface(listObject, container, insert_before) {
     right.appendChild(icon2);
 
     const icon3 = document.createElement('img');
-    icon3.classList.add('icon');
+    icon3.classList.add('up-arrow');
     icon3.setAttribute('src', 'icons/arrow-up.png');
     right.appendChild(icon3);
 
     const icon4 = document.createElement('img');
-    icon4.classList.add('icon');
+    icon4.classList.add('down-arrow');
     icon4.setAttribute('src', 'icons/arrow-down.png');
     right.appendChild(icon4);
 
@@ -135,6 +135,7 @@ export function editList(element) {
     // create the form
     const listNameForm = document.createElement('form');
     listNameForm.setAttribute('action', '#');
+    listNameForm.classList.add('edit-list-form')
 
     element.firstElementChild.appendChild(listNameForm);
     listNameForm.appendChild(listNameInput);

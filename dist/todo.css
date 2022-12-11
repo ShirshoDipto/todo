@@ -63,22 +63,32 @@
     background-color: var(--list-hover);
 }
 
-.a-list{
+.all-list .a-list{
     display: flex;
     padding: 20px;
+    font-size: 1.5rem;
+}
+
+.all-todo .a-list {
+    display: flex;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-right: 40px;
     font-size: 1.5rem;
 }
 
 .todos{
     display: flex;
     flex-direction: column;
-    padding: 50px;
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 40px;
     background-image: url(images/todo-background2.png);
     background-attachment: fixed;
     background-size: 80%;
     background-position: right;
     background-repeat: no-repeat;
-    gap: 40px;
+    gap: 20px;
     position: relative;
 }
 
@@ -114,7 +124,7 @@
 .all-todo{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
     overflow: auto;
     max-height: 80%;
 }

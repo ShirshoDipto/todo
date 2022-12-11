@@ -1,7 +1,7 @@
 import List from './list'
 import Todo from './todo'
 import {lists, addNewListInterface, removeExistingMarker, updateListsAndTodos, updateArrayAndTodo, editList, undoChange} from './manageListInterface'
-import {addNewTodoInterface, changeTodoHeader, showListsTodos, deleteRelatedTodo} from './manageTodoInterface'
+import {addNewTodoInterface, changeTodoHeader, showListsTodos, deleteRelatedTodo, editTodo, updateTodoDOM} from './manageTodoInterface'
 import {saveData, loadData} from './storageManagement'
 
 let activeListNumber = '0';
@@ -59,9 +59,6 @@ function saveEditedList(e) {
     // console.log(e.target.parentNode.parentNode);
     undoChange(e.target.parentNode.parentNode);
     saveData(lists, activeListNumber);
-    // let anArray = lists;
-    // lists = [];
-    // loadPage(anArray);
 }
 
 
@@ -140,6 +137,19 @@ function changeCheck(element) {
 }
 
 
+function updateDatas(theTodo, e) {
+    e.preventDefault();
+    theTodo.setTitle = e.target.firstElementChild.value;
+    theTodo.setDueDate = e.target.firstElementChild.nextElementSibling.lastElementChild.value;
+    theTodo.setPriority = e.target.firstElementChild.nextElementSibling.nextElementSibling.lastElementChild.value;
+    theTodo.setDescription = e.target.lastElementChild.previousElementSibling.value;
+    e.target.parentNode.setAttribute('id', 'hide');
+    const todoDOM = document.querySelector(`.all-todo div[todo-number="${theTodo.getTodoNumber}"]`);
+    updateTodoDOM(theTodo, todoDOM);
+    saveData(lists, activeListNumber);
+}
+
+
 function modifyTodo(e) {
     if (e.target.classList.value === 'delete') {
         const listNumber = this.getAttribute('list-number');
@@ -153,6 +163,18 @@ function modifyTodo(e) {
         // update todo array
         const allTodos = Array.from(document.querySelectorAll('.all-todo .a-todo'));
         updateArrayAndTodo(allTodos);
+    }
+    else if (e.target.classList.value === 'edit') {
+        const editModal = document.querySelector('.edit-todo-modal');
+        editModal.removeAttribute('id');
+        const theTodo = editTodo(this, editModal, lists);
+        const editForm = editModal.lastElementChild;
+        editForm.onsubmit = (e) => {
+            updateDatas(theTodo, e);
+        }
+        editForm.onreset = () => {
+            editModal.setAttribute('id', 'hide');
+        }
     }
     else {
         if (e.target.getAttribute('type') === 'checkbox') {

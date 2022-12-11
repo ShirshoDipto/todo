@@ -65,6 +65,34 @@
             </form>
 
         </div>
+
+
+        <!-- edit todo modal -->
+        <div class="edit-todo-modal" id="hide">
+            <h2 class="todo-modal-header">Edit Task</h2>
+
+            <form class="edit-form" action="#">
+                <input id="todo-name" type="text" name="todo-name" maxlength="50" placeholder="Title" required>
+                <div class="due-date">
+                    <label for="due-date">Due Date:</label>
+                    <input id="due-date" type="date" name="due-date">
+                </div>
+                <div class="priority">
+                    <label for="priority">Select Priority (Optional)</label>
+                    <select name="priority" id="priority">
+                        <option value="none" selected>None</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="normal">Normal</option>
+                    </select>
+                </div>
+                <textarea name="description" id="description" cols="30" rows="10" maxlength="300" placeholder="give some description (optional)"></textarea>
+                <div class="add-cancel">
+                    <button type="submit" class="modal-todo">Save</button>
+                    <button type="reset" class="cancel-todo">Cancel</button>
+                </div>
+            </form>
+        </div>
     </div>
     
 </body>

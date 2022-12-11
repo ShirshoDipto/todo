@@ -23,7 +23,12 @@ export function addNewListInterface(listObject, container, insert_before) {
 
     const icon1 = document.createElement('img');
     icon1.classList.add('icon');
-    icon1.setAttribute('src', 'icons/plus.png');
+    if (listObject.getIsDefault === 1) {
+        icon1.setAttribute('src', 'icons/weather-sunny.png');
+    }
+    else {
+        icon1.setAttribute('src', 'icons/plus.png');
+    }
     left.appendChild(icon1);
 
     const listTitle = document.createElement('div');

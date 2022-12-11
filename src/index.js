@@ -242,11 +242,14 @@ if (localStorage.getItem('activeListNumber')) {
 }
 else {
     // Adding default list
-    let defaultList = new List('My Day', [], 0);
+    let defaultList = new List('My Day', [], 0, 1);
     addNewListInterface(defaultList, allList, newListModal);
     changeTodoHeader(todoHeader, '0', 'My Day');
     const activeList = document.querySelector(`.all-list div[list-number="${defaultList.getListNumber}"]`);
     activeList.setAttribute('id', 'active-list');
+    // activeList.classList.toggle('default-list');
+    // activeList.removeAttribute('src');
+    // activeList.setAttribute('src', 'icons/weather-sunny.png');
     saveData(lists, activeListNumber);
 }
 

@@ -1,10 +1,19 @@
 
 
 export default class List {
-    constructor(title, todos, listNumber) {
+    constructor(title, todos, listNumber, isDefault=0) {
         this.title = title;
         this.todos = todos;
         this.listNumber = listNumber;
+        this.isDefault = isDefault;
+    }
+
+    get getIsDefault() {
+        return this.isDefault;
+    }
+
+    set setIsDefault(value) {
+        this.isDefault = value;
     }
 
     get getListNumber() {return this.listNumber}

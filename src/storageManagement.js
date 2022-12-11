@@ -28,7 +28,12 @@ export function saveData(lists, activeListNumber) {
     for (let elem of lists) {
         let listTitle = elem.getTitle;
         let listNumber = elem.getListNumber;
-        localStorage.setItem(`list_${l}`, `${listTitle},${listNumber}`);
+        if (elem.getIsDefault === 1) {
+                localStorage.setItem(`list_${l}`, `${listTitle},${listNumber},1`);
+        }
+        else {
+            localStorage.setItem(`list_${l}`, `${listTitle},${listNumber}`);
+        }
         saveTodo(elem.getTodos, l);
         l++;
     }
@@ -74,9 +79,15 @@ export function loadData() {
         if (elem.includes('list') && !elem.includes('todo')) {
             const listDetails = localStorage.getItem(elem).split(',');
             const title = listDetails[0];
-            const listNumber = parseInt(listDetails[1])
-            const newList = new List(title, [], listNumber);
-            arrayLists.push(newList);
+            const listNumber = parseInt(listDetails[1]);
+            if (listDetails.length === 3) {
+                const newList = new List(title, [], listNumber, 1);
+                arrayLists.push(newList);
+            }
+            else {
+                const newList = new List(title, [], listNumber);
+                arrayLists.push(newList);
+            }
         }
         else if (elem.includes('todo')) {
             const todoDetails = localStorage.getItem(elem).split(',');

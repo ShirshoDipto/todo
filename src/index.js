@@ -144,12 +144,13 @@ function changeCheck(element) {
 
 function updateDatas(theTodo, e) {
     e.preventDefault();
+    const todoDOM = document.querySelector(`.all-todo div[todo-number="${theTodo.getTodoNumber}"]`);
+    todoDOM.classList.remove(theTodo.getPriority);
     theTodo.setTitle = e.target.firstElementChild.value;
     theTodo.setDueDate = e.target.firstElementChild.nextElementSibling.lastElementChild.value;
     theTodo.setPriority = e.target.firstElementChild.nextElementSibling.nextElementSibling.lastElementChild.value;
     theTodo.setDescription = e.target.lastElementChild.previousElementSibling.value;
     e.target.parentNode.setAttribute('id', 'hide');
-    const todoDOM = document.querySelector(`.all-todo div[todo-number="${theTodo.getTodoNumber}"]`);
     updateTodoDOM(theTodo, todoDOM);
     saveData(lists, activeListNumber);
 }

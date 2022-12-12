@@ -41,15 +41,15 @@ export function addNewListInterface(listObject, container, insert_before) {
     icon2.setAttribute('src', 'icons/pencil.png');
     right.appendChild(icon2);
 
-    const icon3 = document.createElement('img');
-    icon3.classList.add('up-arrow');
-    icon3.setAttribute('src', 'icons/arrow-up.png');
-    right.appendChild(icon3);
+    // const icon3 = document.createElement('img');
+    // icon3.classList.add('up-arrow');
+    // icon3.setAttribute('src', 'icons/arrow-up.png');
+    // right.appendChild(icon3);
 
-    const icon4 = document.createElement('img');
-    icon4.classList.add('down-arrow');
-    icon4.setAttribute('src', 'icons/arrow-down.png');
-    right.appendChild(icon4);
+    // const icon4 = document.createElement('img');
+    // icon4.classList.add('down-arrow');
+    // icon4.setAttribute('src', 'icons/arrow-down.png');
+    // right.appendChild(icon4);
 
     const icon5 = document.createElement('img');
     icon5.classList.add('delete');

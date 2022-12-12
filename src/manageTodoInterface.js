@@ -13,6 +13,18 @@ export function addNewTodoInterface(container, theTodo) {
     aTodo.classList.add('a-todo');
     aTodo.setAttribute('list-number', `${theTodo.getListNumber}`);
     aTodo.setAttribute('todo-number', `${theTodo.getTodoNumber}`);
+    if (theTodo.getPriority === 'none') {
+        aTodo.classList.toggle('none')
+    }
+    else if (theTodo.getPriority === 'medium') {
+        aTodo.classList.toggle('medium')
+    }
+    else if (theTodo.getPriority === 'high') {
+        aTodo.classList.toggle('high')
+    }
+    else if (theTodo.getPriority === 'normal') {
+        aTodo.classList.toggle('normal')
+    }
     container.appendChild(aTodo);
 
     const aList = document.createElement('div');
@@ -39,6 +51,7 @@ export function addNewTodoInterface(container, theTodo) {
     const collapseImg = document.createElement('img');
     collapseImg.setAttribute('src', 'icons/unfold.png');
     collapseImg.setAttribute('alt', 'collapse icon');
+    collapseImg.setAttribute('id', 'hide');
     collapse.appendChild(collapseImg);
 
     const input1 = document.createElement('input');
@@ -59,15 +72,15 @@ export function addNewTodoInterface(container, theTodo) {
     icon2.classList.add('edit');
     right.appendChild(icon2);
 
-    const icon3 = document.createElement('img');
-    icon3.setAttribute('src', 'icons/arrow-up.png');
-    icon3.classList.add('up-arrow');
-    right.appendChild(icon3);
+    // const icon3 = document.createElement('img');
+    // icon3.setAttribute('src', 'icons/arrow-up.png');
+    // icon3.classList.add('up-arrow');
+    // right.appendChild(icon3);
 
-    const icon4 = document.createElement('img');
-    icon4.setAttribute('src', 'icons/arrow-down.png');
-    icon4.classList.add('down-arrow');
-    right.appendChild(icon4);
+    // const icon4 = document.createElement('img');
+    // icon4.setAttribute('src', 'icons/arrow-down.png');
+    // icon4.classList.add('down-arrow');
+    // right.appendChild(icon4);
 
     const icon5 = document.createElement('img');
     icon5.setAttribute('src', 'icons/trash.png');
@@ -128,7 +141,6 @@ export function editTodo(element, editModal, lists) {
     let listNumber = element.getAttribute('list-number');
     let todoNumber = element.getAttribute('todo-number');
     let theTodo = lists[parseInt(listNumber)].getTodos[parseInt(todoNumber)];
-    theTodo.setTitle = 'hi there';
     let editForm = editModal.firstElementChild.nextElementSibling;
     editForm.firstElementChild.value = theTodo.getTitle;
     editForm.firstElementChild.nextElementSibling.lastElementChild.value = theTodo.getDueDate;
@@ -144,4 +156,5 @@ export function editTodo(element, editModal, lists) {
 export function updateTodoDOM(theTodo, todoDOM) {
     todoDOM.firstElementChild.firstElementChild.lastElementChild.textContent = `${theTodo.getTitle} (Due: ${theTodo.getDueDate})`;
     todoDOM.firstElementChild.nextElementSibling.textContent = `${theTodo.getDescription}`
+    todoDOM.classList.toggle(theTodo.getPriority);
 }

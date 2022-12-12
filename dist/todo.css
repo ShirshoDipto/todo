@@ -23,7 +23,7 @@
 .contents{
     display: grid;
     grid-template-columns: 400px 1fr;
-    grid-template-rows: 100px calc(100vh - 150px) 50px;
+    grid-template-rows: 100px 1fr 50px;
     min-height: 100vh;
 }
 
@@ -71,9 +71,6 @@
 
 .all-todo .a-list {
     display: flex;
-    padding-left: 20px;
-    padding-top: 10px;
-    padding-right: 40px;
     font-size: 1.5rem;
 }
 
@@ -81,6 +78,7 @@
     display: flex;
     flex-direction: column;
     padding-top: 10px;
+    padding-bottom: 10px;
     padding-left: 30px;
     padding-right: 40px;
     background-image: url(images/todo-background2.png);
@@ -119,19 +117,23 @@
 .a-todo{
     background-color: var(--side-bar);
     opacity: 0.8;
+    max-width: 1000px;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    padding: 10px;
 }
+
+/* .a-todo:active{
+    transform: scale(0.99);
+} */
 
 .all-todo{
     display: flex;
     flex-direction: column;
     gap: 5px;
     overflow: auto;
-    max-height: 80%;
 }
 
-.todo-header{
-
-}
 
 .todo-title{
     font-size: 2.5rem;
@@ -180,6 +182,7 @@
 }
 
 .description{
+    padding-left: 30px;
 }
 
 .collapse{
@@ -260,7 +263,7 @@ label{
 }
 
 .new-todo-modal, .edit-todo-modal{
-    position: absolute;
+    position: fixed;
     width: 400px;
     top: 50%;
     left: 50%;
@@ -296,10 +299,6 @@ label{
     background-color: var(--list-hover);
 }
 
-.icon, .delete, .edit {
-    /* border: thin solid red; */
-}
-
 #todo-checkbox{
     width: 20px;
     height: 20px;
@@ -328,4 +327,19 @@ label{
 .delete:hover, .edit:hover, .up-arrow:hover, .down-arrow:hover{
     transform: scale(1.2);
     border: thin solid var(--border-right);
+}
+
+/* Styling for priority */
+
+.none{
+    border-left: 2px solid green;
+}
+.high{
+    border-left: 2px solid red;
+}
+.medium{
+    border-left: 2px solid orange;
+}
+.normal{
+    border-left: 2px solid yellow;
 }

@@ -48,10 +48,11 @@
 .all-list{
     display: flex;
     flex-direction: column;
-    flex: 1;
+    flex: 1 1 0;
     gap: 20px;
     padding: 20px;
     overflow: auto;
+    max-height: calc(100vh - 150px);
 }
 
 .all-list .a-list{
@@ -123,15 +124,13 @@
     padding: 10px;
 }
 
-/* .a-todo:active{
-    transform: scale(0.99);
-} */
 
 .all-todo{
     display: flex;
     flex-direction: column;
     gap: 5px;
     overflow: auto;
+    max-height: calc(100vh - 300px);
 }
 
 

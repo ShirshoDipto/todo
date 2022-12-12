@@ -114,7 +114,7 @@ export function showListsTodos(allTodos, listNumber) {
 }
 
 
-export function deleteRelatedTodo(container, allTodos, listNumber){
+export function deleteRelatedTodo(container, allTodos, listNumber) {
     for (let todo of allTodos) {
         const list_num = todo.getAttribute('list-number');
         if (list_num === listNumber) {

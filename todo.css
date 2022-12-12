@@ -117,7 +117,7 @@
 .a-todo{
     background-color: var(--side-bar);
     opacity: 0.8;
-    max-width: 1000px;
+    max-width: 70%;
     cursor: pointer;
     transition: all 0.1s ease;
     padding: 10px;

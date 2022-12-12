@@ -142,14 +142,14 @@ function changeCheck(element) {
 }
 
 
-function updateDatas(theTodo, e) {
+function updateDatas(theTodo, e, todoDOM) {
     e.preventDefault();
-    const todoDOM = document.querySelector(`.all-todo div[todo-number="${theTodo.getTodoNumber}"]`);
     todoDOM.classList.remove(theTodo.getPriority);
     theTodo.setTitle = e.target.firstElementChild.value;
     theTodo.setDueDate = e.target.firstElementChild.nextElementSibling.lastElementChild.value;
     theTodo.setPriority = e.target.firstElementChild.nextElementSibling.nextElementSibling.lastElementChild.value;
     theTodo.setDescription = e.target.lastElementChild.previousElementSibling.value;
+    e.target.reset();
     e.target.parentNode.setAttribute('id', 'hide');
     updateTodoDOM(theTodo, todoDOM);
     saveData(lists, activeListNumber);
@@ -176,7 +176,7 @@ function modifyTodo(e) {
         const theTodo = editTodo(this, editModal, lists);
         const editForm = editModal.lastElementChild;
         editForm.onsubmit = (e) => {
-            updateDatas(theTodo, e);
+            updateDatas(theTodo, e, this);
         }
         editForm.onreset = () => {
             editModal.setAttribute('id', 'hide');

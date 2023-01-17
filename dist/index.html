@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,9 +8,12 @@
     <title>My To Do App</title>
     <link rel="stylesheet" href="todo.css">
 </head>
+
 <body>
     <div class="contents">
-        <div class="header"><h1>My To-Do App</h1></div>
+        <div class="header">
+            <h1>My To-Do App</h1>
+        </div>
         <div class="side-bar">
             <div class="all-list">
 
@@ -30,14 +34,14 @@
         <div class="todos">
             <div class="todo-header" list-number="0">
                 <h2 class="todo-title">Add a List</h2>
-                <h3 class="todo-date"></h3>
-                <div class="add-todo">
-                    <img src="icons/plus-thick.png" alt="add todo icon">
-                </div>
+                <div class="menu"><img src="./icons/menu.png" alt="menu icon"></div>
             </div>
             <div class="all-todo"></div>
         </div>
 
+        <div class="add-todo">
+            <img src="icons/plus-thick.png" alt="add todo icon">
+        </div>
         <div class="footer">Copyright &copy; Shirsho Dipto</div>
 
         <!-- Todo modal -->
@@ -59,7 +63,8 @@
                         <option value="normal">Normal</option>
                     </select>
                 </div>
-                <textarea name="description" id="description" cols="30" rows="10" maxlength="300" placeholder="give some description (optional)"></textarea>
+                <textarea name="description" id="description" cols="30" rows="10" maxlength="300"
+                    placeholder="give some description (optional)"></textarea>
                 <div class="add-cancel">
                     <button type="submit" class="modal-todo">Add</button>
                     <button type="reset" class="cancel-todo">Cancel</button>
@@ -88,7 +93,8 @@
                         <option value="normal">Normal</option>
                     </select>
                 </div>
-                <textarea name="description" id="description" cols="30" rows="10" maxlength="300" placeholder="give some description (optional)"></textarea>
+                <textarea name="description" id="description" cols="30" rows="10" maxlength="300"
+                    placeholder="give some description (optional)"></textarea>
                 <div class="add-cancel">
                     <button type="submit" class="modal-todo">Save</button>
                     <button type="reset" class="cancel-todo">Cancel</button>
@@ -96,7 +102,8 @@
             </form>
         </div>
     </div>
-    
+
 </body>
 <script src="main.js"></script>
+
 </html>

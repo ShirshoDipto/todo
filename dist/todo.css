@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -6,28 +5,28 @@
 }
 
 
-:root{
-    --add-todo-icon:#2563eb;
-    --side-bar:#e0f2fe;
+:root {
+    --add-todo-icon: #2563eb;
+    --side-bar: #e0f2fe;
     --todo-background: #f3f4f6;
     --todo-title: #7ab5c7;
-    --border-right:#497186;
-    --header-text-color:#dbdbdf;
-    --header-height:100px;
-    --footer-height:50px;
-    --list-hover:#d3e5eb;
-    --list-font-color:#274959;
-    --new-list:#83baca;
+    --border-right: #497186;
+    --header-text-color: #dbdbdf;
+    --header-height: 100px;
+    --footer-height: 50px;
+    --list-hover: #d3e5eb;
+    --list-font-color: #274959;
+    --new-list: #83baca;
 }
 
-.contents{
+.contents {
     display: grid;
-    grid-template-columns: 400px 1fr;
-    grid-template-rows: 100px 1fr 50px;
+    grid-template-columns: minmax(300px, 1fr) 3fr;
+    grid-template-rows: 80px calc(100vh - 110px) 30px;
     min-height: 100vh;
 }
 
-.header{
+.header {
     grid-column: 1 / 3;
     display: flex;
     justify-content: center;
@@ -39,35 +38,32 @@
     color: var(--border-right);
 }
 
-.side-bar{
+.side-bar {
     display: flex;
     flex-direction: column;
     background-color: var(--side-bar);
 }
 
-.all-list{
+.all-list {
     display: flex;
     flex-direction: column;
     flex: 1 1 0;
-    gap: 20px;
-    padding: 20px;
+    gap: 10px;
+    padding: 10px;
     overflow: auto;
     max-height: calc(100vh - 150px);
 }
 
-.all-list .a-list{
-    cursor: pointer;
-    color: var(--list-font-color);
-}
-
-.all-list .a-list:hover{
+.all-list .a-list:hover {
     background-color: var(--list-hover);
 }
 
-.all-list .a-list{
+.all-list .a-list {
     display: flex;
-    padding: 20px;
-    font-size: 1.5rem;
+    padding: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--list-font-color);
 }
 
 .all-todo .a-list {
@@ -75,27 +71,26 @@
     font-size: 1.5rem;
 }
 
-.todos{
+.todos {
     display: flex;
     flex-direction: column;
-    padding-top: 10px;
+    padding-top: 5px;
+    padding-left: 10px;
     padding-bottom: 10px;
-    padding-left: 30px;
-    padding-right: 40px;
     background-image: url(images/todo-background2.png);
     background-attachment: fixed;
     background-size: 80%;
     background-position: right;
     background-repeat: no-repeat;
-    gap: 20px;
+    gap: 10px;
     position: relative;
 }
 
-.add-todo{
+.add-todo {
     position: fixed;
     z-index: 1;
-    right: 70px;
-    bottom: 70px;
+    right: 1%;
+    bottom: 5%;
     background: var(--border-right);
     border-radius: 50%;
     display: flex;
@@ -107,39 +102,38 @@
     box-shadow: 5px 5px 5px grey;
 }
 
-.add-todo:hover{
+.add-todo:hover {
     background-color: #5a7e92;
 }
 
-.add-todo:active{
+.add-todo:active {
     transform: scale(0.9);
 }
 
-.a-todo{
+.a-todo {
     background-color: var(--side-bar);
     opacity: 0.8;
-    max-width: 70%;
+    max-width: 83%;
     cursor: pointer;
     transition: all 0.1s ease;
-    padding: 10px;
+    padding: 5px;
 }
 
 
-.all-todo{
+.all-todo {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 2px;
     overflow: auto;
-    max-height: calc(100vh - 250px);
 }
 
 
-.todo-title{
+.todo-title {
     font-size: 2.5rem;
     color: var(--border-right);
 }
 
-.add-new-list{
+.add-new-list {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -148,27 +142,28 @@
     height: 70px;
 }
 
-.add-new-list:hover{
+.add-new-list:hover {
     cursor: pointer;
     background-color: #90c1cf;
 }
 
-.add-new-list:active{
+.add-new-list:active {
     background-color: #77b4c7;
 }
 
-.left, .right{
+.left,
+.right {
     flex: 1;
-    gap: 10px;
+    gap: 7px;
     display: flex;
     align-items: center;
 }
 
-.left{
+.left {
     justify-content: flex-start;
 }
 
-.right{
+.right {
     justify-content: flex-end;
 }
 
@@ -180,23 +175,24 @@
     background-color: var(--side-bar);
 }
 
-.description{
+.description {
     padding-left: 30px;
+    font-size: 0.8rem;
 }
 
-.collapse{
+.collapse {
     display: flex;
     justify-content: center;
 }
 
-#hide{
+#hide {
     position: absolute;
-    transform: scale(0);
+    transform: scaleX(0);
 }
 
 /* List for styling */
 
-.list-form{
+.list-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
@@ -205,7 +201,11 @@
 
 /* Todo Modal Editing */
 
-#list-name, .edit-list-form input, #todo-name, #due-date, #priority{
+#list-name,
+.edit-list-form input,
+#todo-name,
+#due-date,
+#priority {
     grid-column: 1 / 3;
     outline: none;
     border: none;
@@ -216,7 +216,7 @@
     font-size: 1.2rem;
 }
 
-textarea{
+textarea {
     outline: none;
     border: none;
     font-size: 1rem;
@@ -224,12 +224,18 @@ textarea{
 }
 
 
-#list-name:focus, #priority:focus, #due-date:focus, #todo-name:focus, textarea:focus, .edit-list-form input:focus{
+#list-name:focus,
+#priority:focus,
+#due-date:focus,
+#todo-name:focus,
+textarea:focus,
+.edit-list-form input:focus {
     border: thin solid var(--border-right);
 }
 
 
-.list-form button, .add-cancel button{
+.list-form button,
+.add-cancel button {
     height: 30px;
     border: none;
     background-color: var(--new-list);
@@ -238,30 +244,34 @@ textarea{
     color: white;
 }
 
-.add-cancel{
+.add-cancel {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 
-label{
+label {
     font-size: 1.2rem;
 }
 
-.list-form button:hover, .add-cancel button:hover{
+.list-form button:hover,
+.add-cancel button:hover {
     background-color: var(--border-right);
 }
 
-.list-form button:active, .add-cancel button:active{
+.list-form button:active,
+.add-cancel button:active {
     background-color: #274959;
 }
 
-.due-date, .priority{
+.due-date,
+.priority {
     display: grid;
     grid-template-columns: 2fr 1fr;
 }
 
-.new-todo-modal, .edit-todo-modal{
+.new-todo-modal,
+.edit-todo-modal {
     position: fixed;
     width: 400px;
     top: 50%;
@@ -277,18 +287,19 @@ label{
     z-index: 1;
 }
 
-.todo-modal-header{
+.todo-modal-header {
     color: var(--list-font-color);
     font-size: 2rem;
 }
 
-.todo-form, .edit-form{
+.todo-form,
+.edit-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.todo-modal-header{
+.todo-modal-header {
     text-align: center;
 }
 
@@ -298,7 +309,7 @@ label{
     background-color: var(--list-hover);
 }
 
-#todo-checkbox{
+#todo-checkbox {
     width: 20px;
     height: 20px;
     outline: none;
@@ -307,13 +318,16 @@ label{
 
 
 /* Edit list form css */
-.edit-list-form input{
+.edit-list-form input {
     width: 100%;
 }
 
 /* Styles for icons */
 
-.delete, .edit, .up-arrow, .down-arrow{
+.delete,
+.edit,
+.up-arrow,
+.down-arrow {
     cursor: pointer;
     transition: all 0.07s ease;
     /* border: thin solid black; */
@@ -323,22 +337,107 @@ label{
     justify-content: center;
     align-items: center;
 }
-.delete:hover, .edit:hover, .up-arrow:hover, .down-arrow:hover{
+
+.delete:hover,
+.edit:hover,
+.up-arrow:hover,
+.down-arrow:hover {
     transform: scale(1.2);
     border: thin solid var(--border-right);
 }
 
 /* Styling for priority */
 
-.none{
+.none {
     border-left: 2px solid green;
 }
-.high{
+
+.high {
     border-left: 2px solid red;
 }
-.medium{
+
+.medium {
     border-left: 2px solid orange;
 }
-.normal{
+
+.normal {
     border-left: 2px solid yellow;
+}
+
+/* Mobile and Tablet view  */
+
+.menu {
+    position: absolute;
+    display: none;
+}
+
+.tDate {
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.tName {
+    font-size: 1.3rem;
+}
+
+@media (max-width: 850px) {
+    .todo-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .menu {
+        display: block;
+        top: 15px;
+        left: 10px;
+        cursor: pointer;
+    }
+
+    .side-bar {
+        display: none;
+        position: absolute;
+    }
+
+    .contents {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .todos {
+        flex: auto;
+        padding-right: 10px;
+        height: calc(100vh - 110px);
+    }
+
+    .header {
+        height: 80px;
+        font-size: 1.2rem;
+    }
+
+    .footer {
+        height: 30px;
+    }
+
+    .todo-title {
+        font-size: 2rem;
+    }
+
+    .all-todo .a-list {
+        font-size: 1.2rem;
+    }
+
+    .a-todo {
+        max-width: 100%;
+    }
+
+    .description {
+        font-size: 0.7rem;
+    }
+
+    #todo-checkbox {
+        width: 12px;
+        height: 12px;
+    }
+
 }

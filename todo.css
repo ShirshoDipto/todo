@@ -124,6 +124,7 @@
     flex-direction: column;
     gap: 2px;
     overflow: auto;
+    max-height: calc(100vh - 210px);
 }
 
 

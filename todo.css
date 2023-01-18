@@ -23,7 +23,7 @@
     display: grid;
     grid-template-columns: minmax(300px, 1fr) 3fr;
     grid-template-rows: 80px calc(100vh - 110px) 30px;
-    min-height: 100vh;
+    height: 100vh;
 }
 
 .header {
@@ -88,6 +88,7 @@
     background-repeat: no-repeat;
     gap: 10px;
     position: relative;
+    flex: auto;
 }
 
 .add-todo {
@@ -124,7 +125,6 @@
     flex-direction: column;
     gap: 2px;
     overflow: auto;
-    max-height: calc(100vh - 210px);
 }
 
 

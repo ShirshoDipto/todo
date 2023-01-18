@@ -15,20 +15,22 @@
             <h1>My To-Do App</h1>
         </div>
         <div class="side-bar">
-            <div class="all-list">
-
-                <!-- list modal -->
-                <div class="new-list-modal" id="hide">
-                    <form class="list-form" action="#">
-                        <input id="list-name" type="text" placeholder="Name" name="list-name" maxlength="30" required>
-                        <button type="submit" class="add-list">Add</button>
-                        <button type="reset" class="cancel-list">Cancel</button>
-                    </form>
+            <div class="sidebar-content">
+                <div class="all-list">
+    
+                    <!-- list modal -->
+                    <div class="new-list-modal" id="hide">
+                        <form class="list-form" action="#">
+                            <input id="list-name" type="text" placeholder="Name" name="list-name" maxlength="40" required>
+                            <button type="submit" class="add-list">Add</button>
+                            <button type="reset" class="cancel-list">Cancel</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <div class="add-new-list">
-                <img src="icons/plus.png" alt="add icon">
-                <p>New List</p>
+                <div class="add-new-list">
+                    <img src="icons/plus.png" alt="add icon">
+                    <p>New List</p>
+                </div>
             </div>
         </div>
         <div class="todos">
@@ -51,7 +53,7 @@
             <form class="todo-form" action="#">
                 <input id="todo-name" type="text" name="todo-name" maxlength="50" placeholder="Title" required>
                 <div class="due-date">
-                    <label for="due-date">Due Date:</label>
+                    <label for="due-date">Due Date (Optional):</label>
                     <input id="due-date" type="date" name="due-date">
                 </div>
                 <div class="priority">
@@ -63,7 +65,7 @@
                         <option value="normal">Normal</option>
                     </select>
                 </div>
-                <textarea name="description" id="description" cols="30" rows="10" maxlength="300"
+                <textarea name="description" id="description" cols="30" rows="5" maxlength="300"
                     placeholder="give some description (optional)"></textarea>
                 <div class="add-cancel">
                     <button type="submit" class="modal-todo">Add</button>
@@ -93,7 +95,7 @@
                         <option value="normal">Normal</option>
                     </select>
                 </div>
-                <textarea name="description" id="description" cols="30" rows="10" maxlength="300"
+                <textarea name="description" id="description" cols="30" rows="5" maxlength="300"
                     placeholder="give some description (optional)"></textarea>
                 <div class="add-cancel">
                     <button type="submit" class="modal-todo">Save</button>

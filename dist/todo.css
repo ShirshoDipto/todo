@@ -39,19 +39,23 @@
 }
 
 .side-bar {
+    display: block;
+}
+
+.sidebar-content {
+    background-color: var(--side-bar);
     display: flex;
     flex-direction: column;
-    background-color: var(--side-bar);
+    height: 100%;
 }
 
 .all-list {
     display: flex;
+    flex: auto;
     flex-direction: column;
-    flex: 1 1 0;
     gap: 10px;
     padding: 10px;
     overflow: auto;
-    max-height: calc(100vh - 150px);
 }
 
 .all-list .a-list:hover {
@@ -79,8 +83,8 @@
     padding-bottom: 10px;
     background-image: url(images/todo-background2.png);
     background-attachment: fixed;
-    background-size: 80%;
-    background-position: right;
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
     gap: 10px;
     position: relative;
@@ -98,16 +102,11 @@
     align-items: center;
     width: 80px;
     height: 80px;
-    transition: all 0.2s ease;
     box-shadow: 5px 5px 5px grey;
 }
 
 .add-todo:hover {
     background-color: #5a7e92;
-}
-
-.add-todo:active {
-    transform: scale(0.9);
 }
 
 .a-todo {
@@ -140,6 +139,7 @@
     font-size: 1.5rem;
     background-color: var(--new-list);
     height: 70px;
+    flex-shrink: 0;
 }
 
 .add-new-list:hover {
@@ -153,17 +153,18 @@
 
 .left,
 .right {
-    flex: 1;
     gap: 7px;
     display: flex;
     align-items: center;
 }
 
 .left {
+    flex: 2.5;
     justify-content: flex-start;
 }
 
 .right {
+    flex: 1;
     justify-content: flex-end;
 }
 
@@ -209,11 +210,10 @@
     grid-column: 1 / 3;
     outline: none;
     border: none;
-    height: 30px;
+    height: 22px;
     padding-left: 5px;
-    font-size: 1rem;
     border-radius: 5px;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 textarea {
@@ -251,7 +251,7 @@ textarea:focus,
 }
 
 label {
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .list-form button:hover,
@@ -273,34 +273,31 @@ label {
 .new-todo-modal,
 .edit-todo-modal {
     position: fixed;
-    width: 400px;
+    width: min(70%, 270px);
     top: 50%;
     left: 50%;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
     transform: translate(-50%, -50%);
     background-color: var(--side-bar);
     border-radius: 10px;
     box-shadow: 0px 10px 10px grey;
-    padding: 20px;
+    padding: 15px;
     z-index: 1;
 }
 
 .todo-modal-header {
     color: var(--list-font-color);
-    font-size: 2rem;
+    font-size: 1.5rem;
+    text-align: center;
 }
 
 .todo-form,
 .edit-form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-}
-
-.todo-modal-header {
-    text-align: center;
+    gap: 10px;
 }
 
 
@@ -380,11 +377,13 @@ label {
     font-size: 1.3rem;
 }
 
+
 @media (max-width: 850px) {
     .todo-header {
         display: flex;
         justify-content: center;
         align-items: center;
+        padding-left: 32px;
     }
 
     .menu {
@@ -396,7 +395,30 @@ label {
 
     .side-bar {
         display: none;
-        position: absolute;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        height: calc(100vh - 110px);
+        top: 80px;
+        width: 100%;
+        z-index: 1;
+        flex-direction: column;
+    }
+
+    .sidebar-content {
+        position: relative;
+        left: -300px;
+        width: 250px;
+        height: 100%;
+        transition: left 0.2s linear;
+    }
+
+    .list-title {
+        font-size: 0.8rem;
+    }
+
+    .add-new-list {
+        height: 40px;
+        font-size: 1.2rem;
     }
 
     .contents {
@@ -407,7 +429,16 @@ label {
     .todos {
         flex: auto;
         padding-right: 10px;
-        height: calc(100vh - 110px);
+        height: calc(100vh - 250px);
+    }
+
+    .add-todo {
+        position: static;
+        height: 40px;
+        width: 100%;
+        box-shadow: none;
+        border-radius: 0%;
+        z-index: 0;
     }
 
     .header {
@@ -440,4 +471,15 @@ label {
         height: 12px;
     }
 
+    .edit-list-form input {
+        font-size: 0.7rem;
+    }
+}
+
+.show-sidebar {
+    display: block;
+}
+
+.show-sidebar-content {
+    left: 0px;
 }

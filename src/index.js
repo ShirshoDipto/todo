@@ -231,6 +231,19 @@ function loadPage(anArray) {
   showListsTodos(allTodos, activeListNumber);
 }
 
+function toggleSideBar(e) {
+  const sideBar = document.querySelector('.side-bar');
+  const sidebarContent = document.querySelector('.sidebar-content')
+  sidebarContent.classList.add('show-sidebar-content')
+  sideBar.classList.add('show-sidebar');
+  window.onclick = (e) => {
+    if (e.target === sideBar) {
+      sideBar.classList.remove('show-sidebar');
+      sidebarContent.classList.remove('show-sidebar-content')
+    }
+  }
+}
+
 // ############## MAIN FUNCTION #################
 
 // All global variables and eventListeners
@@ -248,6 +261,7 @@ const priority = document.querySelector("#priority");
 const description = document.querySelector("#description");
 const allTodo = document.querySelector(".all-todo");
 const todoHeader = document.querySelector(".todo-header");
+const menu = document.querySelector('.menu');
 
 // loading the existing data
 if (localStorage.getItem("activeListNumber")) {
@@ -269,7 +283,7 @@ if (localStorage.getItem("activeListNumber")) {
 const defaultListDOM = document.querySelectorAll(".all-list .a-list");
 const allTodoDOMS = document.querySelectorAll(".all-todo .a-todo");
 
-addTodo.onclick = () => {
+addTodo.onclick = (e) => {
   newTodoModal.removeAttribute("id");
 };
 
@@ -295,3 +309,5 @@ defaultListDOM.forEach((list) => {
 allTodoDOMS.forEach((todo) => {
   todo.onclick = modifyTodo;
 });
+
+menu.addEventListener('click', toggleSideBar);

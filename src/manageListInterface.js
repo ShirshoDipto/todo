@@ -107,7 +107,7 @@ export function editList(element) {
   // create an input Element
   const listNameInput = document.createElement("input");
   listNameInput.setAttribute("type", "text");
-  listNameInput.setAttribute("maxlength", "30");
+  listNameInput.setAttribute("maxlength", "40");
   listNameInput.required = true;
   listNameInput.value = listTitle.textContent;
 
